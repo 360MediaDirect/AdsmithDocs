@@ -1,65 +1,69 @@
 # Open Issues — Plain-Language Overview
 
-_Last updated 2026-06-24 18:35:19 UTC · 32 open issues._
+_Last updated 2026-06-24 19:32:42 UTC · 32 open issues._
 
 This page summarizes everything currently open and being worked on in New Adsmith
 Frontend, written for the people who use it day to day. Each item ends with its
 internal tracking number in parentheses, e.g. (#244).
 
 ## Dashboard
-- **[Bug]** **Custom date range on the Dashboard** — When you pick "Custom" on the Dashboard date filter, you'll now get start and end date pickers so you can view data for any specific stretch of time instead of only the preset options. (#58)
-- **[Feature]** **Light mode option** — You'll be able to switch the admin between the current dark theme and a new light theme, with your choice remembered next time you log in. (#59)
-- **[Feature]** **Working buttons on detail pages** — The Edit, Preview, and Pull Leads buttons on placement, modal, offer, and advertiser detail pages will actually do something when clicked instead of being unresponsive. (#154)
-- **[Feature]** **Sub-ID Stats moved to the Dashboard** — Sub-ID Stats will be relocated out of the placement form and into the Dashboard reporting area, where they belong. (#236)
-- **[Bug]** **Restore missing Dashboard sections** — Campaign stats, top offers, and watch lists will load again on the Dashboard, and the date range selector will update them. A high-priority fix. (#240)
-- **[Feature]** **15-minute detail on offer timespan stats** — The offer timespan chart will show activity in 15-minute increments, making it much easier to spot offer or partner issues as they happen. (#243)
-- **[Feature]** **Clearer offer status colors** — Paused offers will show in red, Capped in yellow/orange, and Active in green, so you can tell statuses apart at a glance. (#246)
-- **[Feature]** **New monitoring views and activity log** — Adds "Offer with Legs" and "CLP Performance" views to highlight low-converting offers, plus a searchable record of changes like pausing offers or adjusting caps. (#256)
-- **[Feature]** **Full advertiser and placement names** — Long advertiser and placement names will no longer be cut off with "…" on the Dashboard, so you can read them in full. (#260)
-- **[Feature]** **More room on Dashboard tables** — The ID/number column will be removed from Dashboard tables to free up screen space. (#261)
-- **[Feature]** **Cleaner publisher and property names** — Publisher and property names will display only the meaningful part after the last colon (e.g. "Acme Publishing" instead of "Foo: Bar: Acme Publishing"). (#262)
-- **[Feature]** **Consistent Dashboard colors** — A defined color palette will be applied across the Dashboard for better, more consistent readability. (#263)
+- **[Bug]** **Custom date range on the Dashboard date filter** — Choosing "Custom" will open a proper start- and end-date picker so you can view Dashboard data for any range you like, instead of only the preset options. (#58)
+- **[Feature]** **Make the Edit, Preview, and Pull Leads buttons work** — On Placement, Modal, Offer, and Advertiser detail pages, these buttons currently do nothing when clicked. They'll be wired up so they take you where you expect. (#154)
+- **[Feature]** **Move Sub-ID Stats into the Dashboard** — Sub-ID statistics will be relocated out of the placement form and into the Dashboard reporting area, where they belong. (#236)
+- **[Bug]** **Restore the missing Dashboard sections** — Campaign stats, top offers, and watch lists will load again, and changing the date range will update them. Today only the system overview appears. (#240)
+- **[Feature]** **New monitoring views and an activity log** — Adds an "Other Dashboard" area with views for long-running offers and low-converting CLP offers, plus a searchable record of changes like pausing offers or adjusting caps. (#256)
+- **[Feature]** **Show full advertiser and placement names** — Names will no longer be cut off with "…" so you can read them in full. (#260)
+- **[Feature]** **Remove the ID/number column** — Dropping this column frees up screen space for the information you actually use. (#261)
+- **[Feature]** **Cleaner publisher and property names** — When a name contains colons, only the part after the last colon will be shown (e.g. "Foo: Bar: Acme Publishing" becomes "Acme Publishing"). (#262)
+- **[Feature]** **Standardized Dashboard colors** — A defined color palette will be applied consistently across the Dashboard for better readability. (#263)
 
 ## Offers
-- **[Feature]** **More options when first creating an offer** — Piggyback offers, HD pixel placement IDs, and ZIP code targeting will be available right when you create an offer, so you won't have to save it and then edit it to add them. A high-priority improvement. (#142)
-- **[Feature]** **Stricter pre-ping checks** — When a pre-ping requires certain fields, a lead missing those fields will be stopped before the request is sent, preventing incomplete leads from slipping through. (#218)
-- **[Feature]** **Easier offer form entry** — The Advertiser field will get a type-to-search box, and state targeting will accept a typed or pasted comma-separated list (like CA, TX, FL) in addition to picking. (#249)
-- **[Feature]** **Add a whole offer group to Conflicting Offers** — On the Delivery & Settings tab, you'll be able to add every offer in an offer group to the Conflicting Offers list in one step, saving a lot of manual work. (#250)
-- **[Task]** **Quick action links under each offer** — Each offer will show familiar links like Edit, Quick Edit, Trash, View, Preview, Trends, and Details, with Trends opening an offer performance page. (#252)
+- **[Feature]** **Set all offer details when creating an offer** — Piggyback offers, HD pixel placement IDs, and ZIP code targeting can be filled in right away, instead of having to save the offer first and then edit it. (#142)
+- **[Feature]** **Enforce required pre-ping fields before sending** — When a pre-ping is set to run before pushing data, a lead missing required fields will be stopped immediately rather than being sent out and relying on the partner to reject it. (#218)
+- **[Feature]** **Clearer offer status colors** — Paused will show red, Active green, and Capped yellow/orange, so Paused and Capped are no longer easy to confuse. (#246)
+- **[Feature]** **Easier offer form entry** — The Advertiser field gets a type-to-search box, and state targeting will accept a typed or pasted comma-separated list (like CA, TX, FL). (#249)
+- **[Feature]** **Add a whole offer group to Conflicting Offers** — On the Delivery & Settings tab, you'll be able to add every offer in a group to the conflicting list in one step, saving considerable time. (#250)
+- **[Task]** **Quick action links under each offer** — Brings back the familiar row actions (Edit, Quick Edit, Trash, View, Preview, Trends, Details), with Trends opening an Offer Activity page showing lead and revenue trends. (#252)
 
 ## Placements
-- **[Bug]** **Review the placement create/edit form** — Unfamiliar new fields on the placement form will be cleaned up or clarified, and missing links such as Preview and Details will be restored. (#234)
-- **[Feature]** **Reorder assigned offers by dragging** — Selected offers will default to manual order with drag-and-drop reordering, an "x" to remove an offer, and the ability to filter the offer list by taxonomy. (#235)
-- **[Feature]** **Manual offer ordering on the transfer list** — Tracked from UAT, this covers the same improvements as above: a Manual Order default, drag-and-drop, a remove button, and taxonomy filtering on the offer assignment list. (#255)
+- **[Bug]** **Tidy up the placement create/edit form** — Unfamiliar fields will be reviewed and removed, relabeled, or explained, and missing links such as Preview and Details will be restored. (#234)
+- **[Feature]** **Manually order and manage assigned offers** — Selected offers will default to manual order with drag-and-drop reordering, an "X" to remove an offer, and the ability to filter the offer list by taxonomy. (#235)
+- **[Feature]** **Reorder offers in the assignment list** — A companion request to support manual ordering, drag-and-drop, an "X" to remove, and taxonomy filtering when assigning offers to a placement. (#255)
 
 ## Surveys
-- **[Bug]** **Visitors can move past CPA offers** — Fixes a trap where visitors had to click "Yes" to continue with no way to decline or exit a CPA offer. A high-priority fix. (#233)
-- **[Bug]** **No accidental duplicate submissions** — Fixes a problem where switching Yes → No → Yes on an offer could open a second tab or submit a duplicate lead; the action will now fire only once. A high-priority fix. (#266)
-- **[Feature]** **Better TCPA consent checkbox** — The consent checkbox on the lander will be made larger, rounded, and properly aligned with its consent text. (#229)
+- **[Feature]** **Better-looking TCPA consent checkbox** — The consent checkbox will be made larger, rounded, and properly aligned with its text on the live lander. (#229)
+- **[Bug]** **Let visitors decline or move past a CPA offer** — Today visitors are forced to click "Yes" with no way to decline or exit, trapping them mid-flow. They'll be able to continue without being forced into the offer. (#233)
+- **[Bug]** **Prevent duplicate offer firing on a survey** — If a visitor clicks Yes, then No, then Yes again, the offer currently fires a second time (opening another tab or submitting a duplicate lead). It will fire only once. (#266)
 
 ## Flows
-- **[Task]** **Polished Flow form styling** — Fixes unstyled text boxes, color pickers, and checkboxes on the Flow form and restores side-by-side fields so it matches the look of the Placement and Modal forms. (#152)
-- **[Feature]** **"Add all fields" button** — When building a flow, you'll be able to add every available form field at once instead of adding them one by one. (#224)
-- **[Feature]** **Clearer step order control** — The step-order setting will get labels and help text so it's obvious what it controls and what the values mean. (#226)
+- **[Task]** **Fix the Flow form's appearance** — Textareas, color pickers, checkboxes, and paired fields will be styled and laid out correctly to match the Placement and Modal forms. (#152)
+- **[Feature]** **"Add all fields" button on the Form tab** — Add every available form field in one click instead of adding them one at a time. (#224)
+- **[Feature]** **Make the "Step order" setting understandable** — Clearer labels and help text (or a reworked control) so it's obvious what the step order controls and what the values mean. (#226)
 
 ## Link Testing
-- **[Feature]** **Pre-selected placement** — When you open Link Testing from a placement, that placement will already be selected, saving you from picking it each time. (#238)
-- **[Bug]** **Clear error for invalid links** — Testing an invalid link will show a clear failure message instead of dumping you back on the dashboard. (#239)
+- **[Feature]** **Default to the placement you opened it from** — When you start Link Testing from a placement, that placement will already be selected so you don't have to pick it manually. (#238)
+- **[Bug]** **Show an error for invalid links** — Testing a bad link will return a clear failure message instead of dumping you back on the dashboard. (#239)
 
-## Modals
-- **[Bug]** **Visitors can close modal offers** — Fixes a dead Close button that could trap visitors on a single linkout/CPA offer with no way to dismiss or decline it. (#265)
+## Reports
+- **[Feature]** **15-minute detail on offer timespan stats** — The offer detail timespan chart will support 15-minute increments, restoring the close monitoring needed to catch offer or partner-server issues quickly. (#243)
 
 ## Properties
-- **[Feature]** **Searchable publisher selector** — The publisher dropdown on the property form will let you type to search instead of scrolling to find the one you want. (#237)
+- **[Feature]** **Search box for the Publisher selector** — Type to find a publisher on the property form instead of scrolling through a long list. (#237)
+
+## Modals
+- **[Bug]** **Let visitors close or decline a modal offer** — A modal showing a single linkout/CPA offer currently has a Close button that does nothing, trapping the visitor. The Close button will work and visitors will be able to dismiss the offer. (#265)
+
+## Campaigns
+- **[Feature]** **Bring the Campaigns module to New Adsmith Frontend** — Recreates the campaign management from the legacy admin, letting you view, create, edit, and configure campaigns and their offer groups. This is a high-priority gap. (#200)
 
 ## General / Across the App
-- **[Feature]** **Campaigns module** — Brings the legacy Campaigns feature into New Adsmith Frontend so you can view, create, edit, and configure campaigns and offer groups. A critical, high-priority addition. (#200)
+- **[Feature]** **Dark/Light mode toggle** — A theme switcher will let you choose between the current dark look and a new light option, with your choice remembered between visits. (#59)
 
 ## Behind the Scenes
-- **[Feature]** **Brand guidelines for AI output** — A comprehensive brand-guidelines document will be established and used as the main reference for AI-generated content, improving the quality and consistency of results. (#264)
+- **[Feature]** **Brand guidelines as the basis for AI-generated content** — A comprehensive brand-guidelines document will be established and used as the primary input to improve the quality of AI-generated output. (#264)
 
 ---
 
 _This page is generated automatically from open issues and refreshes regularly. Please don't edit it by hand — changes will be overwritten._
 
-<!-- issues-content-hash: 9de43829593399b79cce2cce58f007e1e79ca8e38db3ea17ad6154a6f8b9c16d -->
+<!-- issues-content-hash: f8e70aaf676e6166eef6b3707647ee12ef886cf5f4291fa5acdc80957f95f545 -->
