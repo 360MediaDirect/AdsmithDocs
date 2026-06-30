@@ -1,42 +1,53 @@
 # Open Issues — Plain-Language Overview
 
-_Last updated 2026-06-30 16:43:11 UTC · 13 open issues._
+_Last updated 2026-06-30 17:34:54 UTC · 13 open issues._
 
 This page summarizes everything currently open and being worked on in New Adsmith
 Frontend, written for the people who use it day to day. Each item ends with its
 internal tracking number in parentheses, e.g. (#244).
 
 ## Dashboard
-- **[Task]** **Custom date range on the Dashboard date filter** — Choosing "Custom" will open a proper start- and end-date picker so you can view dashboard data for any range you want, with your selected dates shown right on the filter button. (#58)
-- **[Task]** **Bring back the full set of dashboard sections** — High priority. Beyond the current system overview, you'll see campaign performance stats, top offers, a placements watchlist, recent notes, and alerts for offers converting under 30%, all responding to your chosen date range — plus a searchable history of changes to offers and settings. (#240)
-- **[Feature]** **Pick report dates without editing the web address** — You'll get easy date controls right in the dashboard toolbar, so you no longer have to hand-edit the address bar to pull a specific day or range. Shareable links still update automatically. (#268)
 
-## Behind the Scenes
-- **[Task]** **A safe testing environment with recent data** — A dedicated staging area loaded with May and June data so the team can validate reports without ever touching live information. (#270)
-- **[Task]** **Confirming report numbers match the old system** — An investigation into why some dashboard figures differed from the legacy app, so you can trust that the new reports are accurate. (#271)
-- **[Feature]** **Auto-create tasks from team conversations** — A behind-the-scenes assistant that turns action items from team chats into tracked work items, helping the team capture and follow up on requests more reliably. (#272)
+- **[Task]** **Custom date range picker** — When you choose "Custom" on the Dashboard's date filter, you'll get start and end date selectors plus Apply/Cancel buttons, so you can view data for any specific span instead of only the preset options. (#58)
+- **[Task]** **Bring back the full Dashboard with richer stats** — Restores the missing Dashboard sections so you'll see impressions, clicks, leads, and revenue (with an hourly breakdown), top performing offers, a placements watch list, recent notes, and alerts for offers converting under 30%. It also adds a searchable log of system and offer changes so admins can see who changed what and when. (#240)
+- **[Feature]** **Filter reports without editing the web address** — You'll be able to pick a day or date range right from the Dashboard toolbar instead of manually changing the URL, while shareable links still update automatically. (#268)
 
 ## General / Across the App
-- **[Feature]** **Protection against two people overwriting the same record** — When someone opens a record for editing, others will see it's locked and won't accidentally erase each other's changes. If a record was changed while you had it open, you'll be prompted to reload before saving. (#267)
-- **[Bug]** **Clear error when testing an invalid link** — A bug fix so that entering a bad link shows a proper error message instead of unexpectedly sending you back to the dashboard. (#239)
 
-## Campaigns
-- **[Feature]** **Add the Campaigns area to the new app** — Critical, high priority. The Campaigns capability from the older system is being rebuilt so you can create, edit, and manage campaigns, offer groups, and their settings directly in New Adsmith Frontend. (#200)
+- **[Feature]** **Prevent two people from overwriting each other's edits** — When someone is already editing a record, you'll see a clear "locked by" notice and be kept in read-only mode, and you'll be warned if a record changed since you opened it — so nobody's work gets silently lost. (#267)
+- **[Bug]** **Clear error when testing an invalid link** — Testing a bad link will now show a proper failure message instead of unexpectedly sending you back to the Dashboard. (#239)
+
+## Behind the Scenes
+
+- **[Task]** **Dedicated testing environment with May & June data** — A separate staging area loaded with recent data so the team can verify reports and features without touching live information. (#270)
+- **[Feature]** **Auto-create tasks from Slack conversations** — A helper that turns action items from team chats into tracked work items automatically, reducing manual copying. (#272)
 
 ## Offers
-- **[Task]** **Quick action links under each offer** — Familiar shortcuts (Edit, Quick Edit, Trash, View, Preview, Trends, Details) will appear beneath each offer title, with Trends opening a performance page showing leads, revenue, and a daily breakdown. (#252)
+
+- **[Task]** **Quick action links under each offer** — Each offer will show handy shortcuts (Edit, Quick Edit, Trash, View, Preview, Trends, Details), with Trends opening a performance page showing lead and revenue trends, date filtering, and a daily breakdown. (#252)
 
 ## Flows
-- **[Task]** **Tidy up the Flow form's appearance** — Ongoing styling fixes so text boxes, color pickers, checkboxes, and paired fields look consistent and properly laid out instead of appearing plain or stacked incorrectly. (#152)
+
+- **[Task]** **Tidy up the Flow form's appearance** — Fixes unstyled and misaligned parts of the Flow form so text boxes, color pickers, checkboxes, and paired fields look consistent with the rest of the app. (#152)
 
 ## Placements
-- **[Feature]** **Better defaults and filtering for offer ordering** — Continuing earlier work, this looks at making new placements respect your manual offer order by default and adds a category filter to the available offers list so you can find offers faster. (#275)
+
+- **[Feature]** **Smarter offer ordering and filtering on Placements** — Builds on the recent drag-to-reorder work by considering a Manual Order default (so your chosen order is actually used) and adding a category filter to the available offers list, making it easier to find the right offers. (#275)
+
+## Campaigns
+
+- **[Feature]** **Add the Campaigns module** — A high-priority addition bringing campaign management into New Adsmith Frontend, letting you view, create, edit, and configure campaigns and their offer groups just like the legacy system. (#200)
 
 ## Users
-- **[Task]** **Closing gaps between the old and new Users area** — A review of features from the previous Users screens (such as bulk actions, extra columns, and login details) to guide what's added next for managing users. (#80)
+
+- **[Task]** **Review of Users screen against the old system** — A documentation effort comparing the new Users area to the previous one to spot missing capabilities (like bulk actions and certain columns) and guide what to build next. (#80)
+
+## Reports
+
+- **[Task]** **Confirm report numbers match the legacy system** — An investigation into why some Dashboard report figures differed from the old system, so we can pinpoint and correct any discrepancies and give you numbers you can trust. (#271)
 
 ---
 
 _This page is generated automatically from open issues and refreshes regularly. Please don't edit it by hand — changes will be overwritten._
 
-<!-- issues-content-hash: 1c4684153aa2793a3569392a2111eafd6091b6e9722a9360e6e862edd51a7607 -->
+<!-- issues-content-hash: cca77278b68a1af565a4068f905447a1264979af969fc4cba7b7fdc40416e95f -->
