@@ -1,60 +1,49 @@
 # Open Issues — Plain-Language Overview
 
-_Last updated 2026-06-30 01:41:03 UTC · 32 open issues._
+_Last updated 2026-06-30 03:05:07 UTC · 18 open issues._
 
 This page summarizes everything currently open and being worked on in New Adsmith
 Frontend, written for the people who use it day to day. Each item ends with its
 internal tracking number in parentheses, e.g. (#244).
 
-## Behind the Scenes
-
-- **[Feature]** **Up-to-the-hour numbers for "today"** — Lays the groundwork for the Dashboard to show today's impressions, clicks, leads, and revenue as they happen, in the correct (Eastern) time zone. (#34)
-- **[Feature]** **Reliable historical reporting totals** — Behind-the-scenes work to roll up daily figures so longer-range reports load accurately and consistently. (#35)
-- **[Task]** **Review of an older statistics job** — Checking whether a legacy reporting process is still needed or can be retired to keep things tidy. (#33)
-- **[Task]** **Safety testing of the new lead pre-check system** — Running the new and old systems side by side to confirm the new one matches before any switchover. (#40)
-- **[Feature]** **Advertiser-by-advertiser pre-check validation** — Confirming each active advertiser's lead pre-check works correctly before going live. (#41)
-- **[Task]** **Faster Surveys through added caching** — A high-priority performance improvement so survey pages and offer rules load more quickly. (#42)
-- **[Task]** **Parallel running of new scheduled jobs** — Running new and existing automated jobs together to confirm they produce the same results before relying on the new ones. (#43)
-- **[Task]** **Phased switchover of scheduled jobs (lower-risk batch)** — Retiring the least-critical legacy survey-stats job once its replacement proves stable. (#44)
-- **[Task]** **Phased switchover of scheduled jobs (mid-tier batch)** — Retiring several reporting and stats jobs after a week of stable monitoring. (#45)
-- **[Task]** **Phased switchover of scheduled jobs (critical batch)** — Carefully retiring the most important lead-processing and offer-cap jobs last, with the ability to roll back instantly. (#46)
-- **[Task]** **Written rollback procedures** — Documenting how to safely revert each major system if something goes wrong. (#48)
-- **[Task]** **Troubleshooting guides for common issues** — Step-by-step guides so the team can quickly resolve lead, stats, offer-cap, and connection problems. (#49)
-- **[Task]** **A safe staging environment with May & June data** — Sets up a separate testing area loaded with real-world data so reports can be verified without touching live information. (#270)
-- **[Task]** **Investigation into report number differences vs. the legacy system** — Comparing old and new reporting on the same data to find and explain any mismatches, so you can trust the figures. (#271)
-
 ## Dashboard
+- **[Task]** **Custom date range on the dashboard filter** — Choosing "Custom" in the date filter will open a proper start/end date picker, so you can view dashboard data for any specific range instead of only the preset options like Today or This Month. (#58)
+- **[Task]** **Bring back missing dashboard sections** — The dashboard will once again show campaign stats, top offers, and watch lists (not just the system overview), and the date range selector will update them. This is a high-priority fix. (#240)
+- **[Feature]** **New "Other Dashboard" views and an activity log** — You'll get dedicated views for offers with sustained performance ("Offers with Legs") and for CLP offer performance, with low-converting offers highlighted. A searchable log will also record changes like pausing offers or editing caps, with who made the change and when. (#256)
+- **[Feature]** **Pick report dates without touching the web address** — You'll be able to choose a day or range directly from the dashboard toolbar, rather than manually editing the address bar. The link still updates so you can bookmark or share it. (#268)
+- **[Feature]** **Dashboard links open in a new tab** — Clicking a link on the dashboard will open it in a new browser tab, so you keep your current dashboard view instead of being navigated away. (#269)
 
-- **[Task]** **Restore missing Dashboard sections** — A high-priority fix to bring back campaign stats, top offers, and watch lists so the Dashboard shows the full picture again, with the date range driving the data. (#240)
-- **[Task]** **Custom date range on the Dashboard** — Choosing "Custom" will open a date picker with start and end dates, so you can view data for any specific period instead of just preset ranges. (#58)
-- **[Feature]** **Light and dark mode toggle** — You'll be able to switch between dark and light themes to suit your environment and preferences, with your choice remembered next time. (#59)
-- **[Feature]** **New "Other Dashboard" views and activity log** — Adds an "Offers with Legs" view and a CLP performance view (highlighting offers converting under 30%), plus a searchable log of who changed what and when. (#256)
-- **[Feature]** **Change report dates without editing the web address** — Adds proper date controls to the Dashboard toolbar so you no longer have to hand-edit the address bar to pull a specific day or range. (#268)
-- **[Feature]** **Dashboard links open in a new tab** — Clicking a Dashboard link will open it in a new tab so you don't lose your place or current view. (#269)
-
-## Offers & Placements
-
-- **[Feature]** **Bring back the Campaigns module** — A high-priority addition to restore creating, editing, and managing campaigns and their offer groups, matching what's available in the legacy system. (#200)
-- **[Bug]** **Hidden offers no longer slip through as leads** — Fixes a high-priority issue where an offer hidden by its pre-check could still be auto-submitted and recorded as a successful lead. (#274)
-- **[Feature]** **Enforce required fields before a lead is pushed** — When a pre-ping is set to run before sending data, leads missing required information will be stopped up front rather than relying on the advertiser to catch it. (#218)
-- **[Feature]** **Reorder and filter offers on Placements** — You'll be able to set offers to manual order, drag them into the sequence you want, remove one with an "X," and filter the offer list by taxonomy. (#235)
-- **[Task]** **Quick action links beneath each offer** — Adds familiar links like Edit, Quick Edit, Trash, View, Preview, Trends, and Details, with Trends opening an offer activity page showing lead and revenue trends over time. (#252)
+## Offers
+- **[Feature]** **Enforce required fields before sending leads** — When an offer check runs before a data push, leads missing required information will be stopped up front instead of being passed through, preventing incomplete or malformed leads from slipping by. (#218)
+- **[Task]** **Quick action links under each offer** — Each offer will show handy links beneath its title (Edit, Quick Edit, Trash, View, Preview, Trends, Details), with Trends opening an activity page showing lead and revenue performance over time. (#252)
+- **[Bug]** **Close a gap that let hidden offers still submit leads** — In certain auto-register setups, an offer could be correctly hidden yet still record a successful lead. This fix makes sure a hidden offer never submits, keeping your reporting and revenue accurate. (#274)
 
 ## General / Across the App
-
-- **[Feature]** **Protection against two people overwriting each other's edits** — When you open a record to edit, others will see it's locked, and saving will warn you if someone changed it first, so no one's work gets silently lost. (#267)
-- **[Bug]** **Clear error when testing an invalid link** — Testing a bad link will show a proper failure message instead of unexpectedly sending you to the Dashboard. (#239)
-- **[Task]** **Users screen review against the legacy version** — A review of the Users area to identify which features (like bulk actions and login details) are still missing compared to the old system. (#80)
-- **[Task]** **Stronger brand guidelines to improve AI output** — Establishing a single, detailed brand guide so AI-generated content stays consistent and on-brand. (#264)
-- **[Feature]** **Automatic issue creation from team chats** — A helper that turns action items from conversations into tracked tasks automatically, reducing manual copy-and-paste. (#272)
+- **[Feature]** **Prevent two people from overwriting each other's edits** — When you open a record to edit it, others will see it's locked and by whom, and the system will warn you if someone changed it since you opened it. This protects your work from being silently overwritten across offers, flows, placements, advertisers, and more. (#267)
 
 ## Flows
+- **[Task]** **Tidy up the Flow form's appearance** — Remaining styling issues on the Flow form will be cleaned up so text boxes, color pickers, checkboxes, and paired fields look consistent with the rest of the app instead of appearing plain or stacked awkwardly. (#152)
 
-- **[Feature]** **Clearer "Step order" setting** — The setting will get a plain-language label and helpful inline text explaining what it controls, so you no longer have to guess what it does. (#226)
-- **[Task]** **Tidy up the Flow form's appearance** — Cleans up styling issues so text boxes, color pickers, checkboxes, and paired fields look polished and lay out correctly, like the other forms. (#152)
+## Placements
+- **[Feature]** **Better control over the offer selection list** — Building on recent drag-to-reorder work, placements will be able to default to manual offer ordering (so your arrangement actually takes effect) and let you filter the available offers list by category. (#275)
+
+## Campaigns
+- **[Feature]** **Bring the Campaigns area into the new platform** — A Campaigns module will be added so you can view, create, edit, and configure campaigns and their offer groups, matching what's available in the current system. This is a critical, high-priority addition. (#200)
+
+## Users
+- **[Task]** **Review of what's missing in the Users area** — A documentation review comparing the new Users screens to the older system, flagging gaps like bulk actions, login/2FA details, and a few form fields so the team can prioritize what to add next. (#80)
+
+## Link Testing
+- **[Bug]** **Show a clear error for invalid links** — Testing a bad link will now return a proper failure message instead of quietly sending you to the dashboard, so you immediately know the link didn't work. (#239)
+
+## Behind the Scenes
+- **[Task]** **Dedicated testing environment with May and June data** — Setting up a separate, safe space loaded with recent data so testing and report checks can happen without touching live information. (#270)
+- **[Task]** **Checking report numbers against the old system** — An investigation into why some dashboard figures differed from the legacy system, to pin down the cause and confirm the numbers line up. (#271)
+- **[Feature]** **Turn Slack conversations into tracked tasks automatically** — A helper that reads team chats and files them as work items, reducing manual copy-and-paste when capturing requests and follow-ups. (#272)
+- **[Task]** **Stronger brand guidelines to guide AI output** — Establishing a single, thorough brand-guidelines document to use as the main reference for AI-generated content, improving the quality and consistency of results. (#264)
 
 ---
 
 _This page is generated automatically from open issues and refreshes regularly. Please don't edit it by hand — changes will be overwritten._
 
-<!-- issues-content-hash: faecd53a4dfcde97e324518cd3e13868b7519c0b955be87856fa9ce778878ae6 -->
+<!-- issues-content-hash: 3a22b4ee69d23ae5129a56cac1ade559584b388a1abb27033c1ca95602512225 -->
