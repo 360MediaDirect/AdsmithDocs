@@ -1,74 +1,64 @@
 # Open Issues — Plain-Language Overview
 
-_Last updated 2026-07-02 20:29:17 UTC · 31 open issues._
+_Last updated 2026-07-02 21:25:57 UTC · 29 open issues._
 
 This page summarizes everything currently open and being worked on in New Adsmith
 Frontend, written for the people who use it day to day. Each item ends with its
 internal tracking number in parentheses, e.g. (#244).
 
-## General / Across the App
-
-- **[Feature]** **Prevent two people from overwriting each other's edits** — When you open a record to edit it, others will see it's being worked on, and you'll be warned if someone changed it since you opened it — so nobody's changes get silently wiped out. (#267)
-- **[Feature]** **Searchable history of every change** — A new Audit Log will record who changed what and when across the app (offers, placements, advertisers, and more), including automated changes, so you can always trace "who edited this and when." (#276)
-- **[Feature]** **Clean up controls that don't actually do anything** — Several settings that look active but currently have no effect (Advertiser Web Presence links, some user permission toggles, and a few Data Client and Pre-Ping options) will be either removed or made functional, so the screens only show controls that truly work. (#296)
-- **[Task]** **Bring the Users area up to par with the old system** — A review of the legacy Users screens versus the new ones to identify missing pieces (like bulk role changes and password/notification options) and close the gaps. (#80)
-- **[Feature]** **Bring back the Campaigns area** — The Campaigns module from the old admin isn't in the new platform yet. This adds it back so you can create, edit, and manage campaigns and offer groups. High priority. (#200)
-- **[Bug]** **Clear error when testing an invalid link** — Right now testing a bad link quietly dumps you on the Dashboard. This fix will instead show a proper error so you know the link failed. (#239)
-
-## Ad Serving & Lead Delivery
-
-- **[Bug]** **Success pixels now actually fire** — Conversion/tracking pixels set up on offers currently never fire because of a formatting mismatch, meaning lost tracking. This fixes them so configured pixels reliably fire on success. High priority. (#297)
-- **[Bug]** **Pre-Ping "equals" condition works again** — The "equals" match option on Pre-Pings silently never matched, leading to wrong lead-qualification decisions. This fix makes it evaluate correctly. High priority. (#298)
-- **[Bug]** **Pausing a publisher or property truly stops it** — One part of the system ignored the paused status, so enforcement was inconsistent. This makes paused publishers and properties reliably blocked everywhere. (#299)
-- **[Bug]** **Property domain restrictions take effect** — Domain base/allow-list settings on Properties were being saved but ignored at run time. This connects them so the restrictions actually apply. (#300)
-- **[Bug]** **No more duplicate leads sent to advertisers** — In rare retry situations a lead could be delivered to an advertiser more than once. This adds a safeguard so each lead is only posted once. High priority. (#303)
-- **[Bug]** **Stop pointlessly retrying leads that can't succeed** — Leads that are permanently rejected (duplicates, do-not-call, validation failures) were being retried repeatedly before failing. This will tell the difference between temporary and permanent failures so only recoverable ones retry. (#304)
-
-## Surveys
-
-- **[Feature]** **Design settings actually change what visitors see** — A full audit to make sure every option on the Design tab (and other entity forms) is wired end-to-end, so a change you make in the admin genuinely shows up in the live survey. (#288)
-- **[Bug]** **Most survey styling options now work** — Around 30 Design-tab settings (colors, buttons, header, question text, legal text) were saved but had no effect on the live survey. This connects them so your styling choices appear to visitors. High priority area. (#290)
-- **[Bug]** **Voucher code and info links show on the survey** — A configured custom question (voucher code) and the privacy/terms/details links weren't appearing on the live survey even though they're set up in the admin. This restores them, matching the old app. High priority. (#291)
-- **[Feature]** **Finish connecting the remaining survey design settings** — A handful of Design-tab settings left over from the earlier work (like iFrame height and display format) will be finished so each one either affects the survey or is removed if unused. (#293)
+## Compliance & Lead Delivery
+- **[Feature]** **Ongoing TrustedForm compliance and lead-handling improvements** — This is the umbrella effort to properly claim and store consent certificates for leads and to make lead delivery more reliable and dependable. (#309)
+- **[Bug]** **Prevent a lead from being sent to an advertiser twice** — If something hiccups right after a lead is delivered, the system could re-send the same lead. This fix makes sure each lead reaches the advertiser only once, protecting against double-billing and advertiser-trust issues. (#303)
+- **[Bug]** **Stop retrying leads that can never succeed** — Leads that are permanently rejected (duplicates, do-not-call, failed checks) will no longer be retried over and over, keeping error tracking clean and trustworthy. (#304)
+- **[Feature]** **TrustedForm certificate switch on the Data Client form** — You'll be able to turn TrustedForm certificate claiming on or off for each data client directly in the admin, instead of it being something only a developer can set. (#305)
+- **[Task]** **Review how long consent records are kept** — A behind-the-scenes check to confirm the retention period for TrustedForm consent evidence matches current data and privacy policy. (#306)
 
 ## Dashboard
+- **[Task]** **Custom date range picker for the date filter** — Choosing "Custom" will open a start/end date picker so you can view dashboard data for any range you like, not just the preset options. (#58)
+- **[Feature]** **Pick report dates right in the dashboard** — You'll be able to change the reporting day or range using controls in the dashboard itself, instead of hand-editing the web address. Links will still stay shareable. (#268)
+- **[Feature]** **Export the day-by-day breakdown** — A new export button on the breakdown-by-day view will let you download that data (for example, as a spreadsheet). (#286)
+- **[Task]** **Confirm dashboard numbers match the legacy system** — An investigation into why some report totals differ from the old app, so you can trust that the new dashboard reports are accurate. (#271)
 
-- **[Task]** **Custom date range picker** — Choosing "Custom" on the Dashboard date filter will open start- and end-date pickers with Apply/Cancel, so you can view data for any range you want. (#58)
-- **[Feature]** **Pick report dates without editing the web address** — You'll be able to choose a day or date range straight from the Dashboard controls instead of hand-editing the URL, while still keeping links shareable. (#268)
-- **[Feature]** **Export the day-by-day breakdown** — A new export button will let you download the breakdown-by-day data (e.g. as a spreadsheet) for your own analysis. High priority. (#286)
+## Surveys
+- **[Bug]** **Make the survey Design settings actually take effect** — Many styling and behavior options (colors, continue button, question text, header, legal text) are saved but don't currently change what visitors see. This wires them up so your design choices actually appear on the live survey. (#290)
+- **[Feature]** **Finish connecting the remaining Design-tab settings** — Wraps up the last few survey design options so each one either works on the live survey or is removed if it isn't needed. (#293)
+- **[Feature]** **Make sure every design option is fully connected** — A sweep to confirm that customization options across all screens genuinely flow through from the form to what visitors see, with no "dead" settings that quietly do nothing. (#288)
+- **[Bug]** **Voucher code and info links missing on the live survey** — For affected data clients, the voucher code line and the privacy/terms/details links are configured correctly but don't show up on the survey page like they did in the old app. This restores them. (#291)
 
-## Compliance
+## General / Across the App
+- **[Feature]** **Prevent two people from overwriting each other's edits** — When someone is editing a record, others will see it's locked and by whom, and the system will warn you if a record changed while you had it open, so no one's changes get silently lost. (#267)
+- **[Feature]** **A searchable history of who changed what** — A new admin Audit Log will record every change to records (and automated changes too), with who made it and when, plus a per-record history, making it easy to answer "who changed this?" (#276)
+- **[Feature]** **Remove admin controls that don't do anything** — Several settings across the app are shown but have no effect. These will be hidden or removed so the admin only shows controls that actually work. (#296)
+- **[Bug]** **Show a clear error when testing an invalid link** — Testing a bad link currently dumps you on the dashboard with no explanation. Instead you'll get a clear failure message. (#239)
 
-- **[Feature]** **Turn TrustedForm cert claiming on per Data Client** — The behavior already works behind the scenes, but this adds a simple toggle on the Data Client form so you can opt a client in without needing technical help. (#305)
-- **[Task]** **Review how long TrustedForm records are kept** — A policy check on the 2-year retention and stored details of TrustedForm consent records, to confirm we keep the right information for the right length of time. (#306)
-- **[Feature]** **Overall TrustedForm compliance effort** — The umbrella item tracking the work to claim and retain compliance certificates and harden the lead pipeline. (#309)
-
-## Placements & Offers
-
-- **[Feature]** **Smarter offer ordering and filtering on Placements** — Follow-up work to default new placements to Manual Order (so your drag-to-reorder is actually respected) and to add a filter for the available offers list by category. (#275)
-- **[Feature]** **Preview shows your unsaved edits** — The Preview button on placement and offer edit pages will reflect the changes you're currently making, instead of only the last saved version — so you can preview before saving. (#292)
-- **[Bug]** **Offer options reach the live widget** — Several saved offer settings (including Modal-tab fields and some backend flags) were being dropped before they reached the live experience. This ensures each is either delivered and used, or cleanly removed. (#295)
-
-## Reports & Data
-
-- **[Task]** **A safe test environment with May & June data** — Set up a staging area loaded with recent data so report testing can happen without touching live information. (#270)
-- **[Task]** **Confirm report numbers match the old system** — An investigation into why some Dashboard report figures differed from the legacy app, to pinpoint the cause and confirm the numbers line up. (#271)
+## Offers
+- **[Bug]** **Success pixels now fire as configured** — Conversion/postback pixels set up on an offer currently never fire, so conversions go untracked. This fixes them so configured pixels fire reliably. (#297)
+- **[Feature]** **Preview shows your unsaved changes** — The Preview button on offer and placement edit pages will reflect the edits you're currently making, so you no longer have to save first just to see how a change looks. (#292)
+- **[Bug]** **Make sure saved offer options reach the live page** — Some offer settings are saved but never make it to what visitors see. Each will be connected and shown, or removed if it isn't needed. (#295)
 
 ## Modals
+- **[Feature]** **Make the Modal Design tab work (or remove it)** — Every field on the Modal Design tab is saved but has no effect on the visitor's modal today. These will either be wired up to display properly or removed to avoid confusion. (#294)
+- **[Bug]** **"In Order" offer sorting can't be saved** — The modal offers an "In Order" sorting choice that fails to save. It will either be made fully functional or removed from the form. (#301)
 
-- **[Feature]** **Make the Modal Design tab count** — The entire Modal Design tab currently has no effect on what visitors see. This will either wire those six settings through to the live modal or remove the tab if it's not needed. (#294)
-- **[Bug]** **Fix the unsavable "In Order" modal sort** — The "In Order" offer sorting choice can't currently be saved. This will either make it save and sort correctly or remove it from the form. (#301)
-
-## Flows
-
-- **[Task]** **Tidy up the Flow form's appearance** — Parts of the Flow form look unstyled or misaligned (plain text boxes, stacked fields, unstyled color pickers). This brings it in line with the other forms. (#152)
+## Placements & Properties
+- **[Feature]** **Smarter offer ordering and filtering on placements** — Deciding whether new placements should default to your manual offer order (so reordering actually sticks), plus a filter to narrow the available offers list by category. (#275)
+- **[Bug]** **Domain restrictions on properties will take effect** — Domain settings entered for a property currently do nothing at run time. This fixes them so your allowed-domain rules are actually applied. (#300)
 
 ## Behind the Scenes
+- **[Task]** **A safe test environment with May and June data** — Setting up a separate practice environment loaded with real-looking data so testing and report checks can happen without touching live information. (#270)
+- **[Feature]** **A Slack helper that turns conversations into tracked tasks** — A bot that reads designated Slack channels and automatically files action items as tracked issues, reducing manual copy-paste. (#272)
 
-- **[Feature]** **Automatic issue filing from chat** — An internal helper that reads team conversations and turns action items into tracked issues automatically, reducing manual copy-and-paste. No direct effect on the product UI. (#272)
+## Flows
+- **[Task]** **Tidy up the Flow form's appearance** — Parts of the Flow form look unstyled or misaligned compared to other forms. This cleans up the layout and styling so it matches the rest of the app. (#152)
+
+## Campaigns
+- **[Feature]** **Bring Campaigns into New Adsmith Frontend** — The Campaigns module from the old admin isn't in the new platform yet. This adds it so you can view, create, edit, and configure campaigns and offer groups as before. (#200)
+
+## Users
+- **[Task]** **Review of the Users area vs. the old system** — A documentation exercise comparing the old and new Users screens to catch any missing capabilities (like bulk actions or last-login info) and plan what to add. (#80)
 
 ---
 
 _This page is generated automatically from open issues and refreshes regularly. Please don't edit it by hand — changes will be overwritten._
 
-<!-- issues-content-hash: a3eecca103db7263b87211f38f83acd97ed20068ba99bc5db7c9c86a44b2a676 -->
+<!-- issues-content-hash: 688fb8a78c0b972004980386a6635670609cd11ed85c7a46286f8edcaf995650 -->
