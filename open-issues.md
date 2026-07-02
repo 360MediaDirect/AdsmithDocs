@@ -1,61 +1,47 @@
 # Open Issues — Plain-Language Overview
 
-_Last updated 2026-07-02 15:45:51 UTC · 18 open issues._
+_Last updated 2026-07-02 16:35:04 UTC · 18 open issues._
 
 This page summarizes everything currently open and being worked on in New Adsmith
 Frontend, written for the people who use it day to day. Each item ends with its
 internal tracking number in parentheses, e.g. (#244).
 
 ## Dashboard
-
-- **[Task]** **Custom date range on the Dashboard** — Picking "Custom" from the date filter will finally open a start-and-end date picker, so you can view Dashboard data for any specific range instead of just the preset options. (#58)
-- **[Feature]** **Change report dates without touching the address bar** — New date controls will live right in the Dashboard toolbar, letting you pull a specific day or range by clicking, not by editing the web address. Shareable links still update behind the scenes. (#268)
-- **[Feature]** **Export the day-by-day breakdown** — A new export button on the breakdown-by-day view will let you download that data (for example, to a spreadsheet). (#286)
-- **[Task]** **Visual polish on the Dashboard** — The header will show the logo instead of the "Adsmith" text, long offer names will no longer be cut off, and table rows will get cleaner alternating shading for easier reading. (#283)
+- **[Task]** **Custom date range on the Dashboard filter** — Choosing "Custom" in the date filter will open a start-and-end date picker so you can view Dashboard data for any range you like, with the chosen dates shown right on the filter button. (#58)
+- **[Feature]** **Pick report dates without editing the web address** — New date controls will live in the Dashboard toolbar so you can pull daily or custom-range reports directly, instead of hand-editing the address bar. The link still updates so you can share or bookmark it. (#268)
+- **[Task]** **Data-matching check between the new and legacy reports** — We're comparing report numbers in New Adsmith Frontend against the old system to find and explain any differences, so you can trust that the figures line up. (#271)
+- **[Feature]** **Export the day-by-day breakdown** — A new export button on the breakdown-by-day view will let you download that data (for example to a spreadsheet). (#286)
+- **[Task]** **Dashboard polish: logo, full offer names, cleaner rows** — The header will show the brand logo, long offer names will no longer be cut off, and table rows will get tidy alternating shading for easier reading. (#283)
 
 ## Surveys
-
-- **[Feature]** **Design settings that actually show in the survey** — We're making sure every customization you set on the Design tab is reflected in the live survey, and reviewing all entity form options to remove any settings that currently have no effect. (#288)
-- **[Bug]** **Survey styling options that don't work yet** — Many Design-tab settings (colors, continue button, question text, header, legal text) are saved but don't currently change what visitors see. This fix connects them so your choices actually appear in the survey. (#290)
-
-## Placements
-
-- **[Feature]** **Better control over placement offers** — New placements will default to your manual offer order (so the order you set is respected), and you'll be able to filter the available offers list by category to find offers faster. (#275)
-- **[Feature]** **Preview before you save** — A preview button on the placement and offer edit pages will show how things will look based on your current, unsaved changes. (#289)
-
-## Reports
-
-- **[Task]** **Sortable Offer Audit tables** — You'll be able to click column headers in the Offer Performance Audit to sort results by any measure (leads, conversions, rates, and more), making outliers much easier to spot. (#281)
-- **[Task]** **Confirming report numbers match the old system** — We're investigating why some Dashboard report figures differed from the legacy system, pinpointing the cause, and confirming the numbers can be trusted. (#271)
+- **[Bug]** **Design settings that don't yet change the live survey** — Many look-and-feel options on the Placement Design tab (colors, continue button, question text, header, legal text) currently have no effect on what visitors see. This work makes those settings actually change the live survey widget. (#290)
+- **[Feature]** **Make sure every Design-tab option really works** — We'll confirm that each customization on the Design tab is reflected in the survey view, and audit form options across all entity screens so there are no settings that quietly do nothing. (#288)
+- **[Bug]** **Missing voucher code and info links on the live survey** — For certain Data Clients, the configured voucher-code question and the privacy/terms/details links aren't showing on the survey page even though they're saved. This fix makes them appear as they do in the legacy app, which matters for both leads and compliance. (#291)
 
 ## General / Across the App
-
-- **[Feature]** **Protection against overwriting each other's edits** — When two people open the same record, the app will warn you if someone else is already editing or has changed it since you opened it, so no one's work gets silently lost. (#267)
-- **[Feature]** **A searchable history of every change** — A new Audit Log will record who changed what and when across offers, placements, and other records (including automated changes), making it easy to answer "who edited this?" (#276)
-
-## Campaigns
-
-- **[Feature]** **Campaigns module coming to the new platform** — The Campaigns feature from the legacy system isn't in New Adsmith Frontend yet. This high-priority work brings back creating, editing, and managing campaigns and their offer groups. (#200)
-
-## Flows
-
-- **[Task]** **Fixing the look of the Flow form** — Parts of the Flow form currently appear unstyled or misaligned. This cleanup brings its layout in line with the Placement and Modal forms for a consistent, polished experience. (#152)
-
-## Users
-
-- **[Task]** **Closing the gap on the Users screen** — A review comparing the new Users area to the legacy version identifies missing capabilities (like bulk actions and extra columns) so we can prioritize bringing them over. (#80)
-
-## Link Testing
-
-- **[Bug]** **Clearer results when testing a bad link** — Testing an invalid link currently dumps you back on the Dashboard with no explanation. This fix will show a proper error message instead. (#239)
+- **[Feature]** **Prevent two people from overwriting each other's edits** — When someone opens a record to edit, others will see it as locked (with who has it and since when), and if a record changed while you had it open, you'll be prompted to reload instead of silently wiping out someone else's changes. Applies across all editable screens like Offers, Flows, Placements, Advertisers, and more. (#267)
+- **[Feature]** **Searchable history of who changed what** — A new admin Audit Log will record every manual and automated change to your records — with the person or system, timestamp, and what changed — so you can look up "who changed this and when" and view a history right on each record. (#276)
+- **[Bug]** **Clear error when testing an invalid link** — Testing a bad link currently dumps you back on the Dashboard with no explanation. It will instead show a clear failure message so you know the link didn't work. (#239)
 
 ## Behind the Scenes
+- **[Task]** **A safe practice environment with May & June data** — We're setting up a separate testing environment loaded with recent data so report checks and reviews can happen without touching live information. (#270)
+- **[Feature]** **Turn conversations into tracked to-dos automatically** — An internal helper will read designated Slack discussions and file the resulting tasks as tracked issues (avoiding duplicates), saving manual copy-and-paste. (#272)
 
-- **[Task]** **A safe testing environment with real data** — We're setting up a separate staging area loaded with May and June data so reports and features can be validated without ever touching live information. (#270)
-- **[Feature]** **Turning conversations into tracked work automatically** — A new assistant will read meeting and chat notes and file the resulting to-dos for the team automatically, reducing manual copy-and-paste. (#272)
+## Campaigns
+- **[Feature]** **Bring the Campaigns module to New Adsmith Frontend** — The Campaigns area from the old admin isn't here yet. This adds it back so you can view, create, and edit campaigns and manage offer groups, matching what you could do before. (#200)
+
+## Placements
+- **[Feature]** **Smarter defaults and filtering for the offer list** — Building on recent drag-to-reorder work, new placements can default to your manual offer order (so your arrangement is actually used), and you'll be able to filter the available offers list by category to find them faster. (#275)
+- **[Feature]** **Preview placements and offers before saving** — A preview button on the placement and offer add/edit pages will show how things will look based on your current, unsaved entries. (#289)
+
+## Users
+- **[Task]** **Closing the gaps between the old and new Users screens** — A review comparing the legacy Users area to the new one is guiding work to bring back missing pieces (like bulk actions, password setup, and login/2FA details) so the new Users screen is as capable as the old one. (#80)
+
+## Flows
+- **[Task]** **Fixing the look of the Flow form** — Parts of the Flow form currently appear unstyled or awkwardly stacked. This tidies up textareas, color pickers, checkboxes, and side-by-side fields so the form matches the polish of the other screens. (#152)
 
 ---
 
 _This page is generated automatically from open issues and refreshes regularly. Please don't edit it by hand — changes will be overwritten._
 
-<!-- issues-content-hash: 489aad45c20d9ecda33940890a8015fca7f7c2f3338ebef7bafa545710c16e38 -->
+<!-- issues-content-hash: c297544c16901286038e0553d1205d4a4d2aff6095d33f2c18b5f7a831316cda -->
