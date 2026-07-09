@@ -1,69 +1,52 @@
 # Open Issues — Plain-Language Overview
 
-_Last updated 2026-07-09 19:32:40 UTC · 26 open issues._
+_Last updated 2026-07-09 20:34:37 UTC · 26 open issues._
 
 This page summarizes everything currently open and being worked on in New Adsmith
 Frontend, written for the people who use it day to day. Each item ends with its
 internal tracking number in parentheses, e.g. (#244).
 
 ## Offers
-
-- **[Feature]** **Preview your unsaved changes on Offers and Placements** — When editing an offer or placement, the Preview will show exactly what you're working on right now, including edits you haven't saved yet, so you no longer have to save first just to see how a change looks. (#292)
-- **[Bug]** **Some saved offer settings weren't reaching the live page** — A number of offer options (including several Modal-tab settings and "Force More Info Visible") were being saved but never actually applied where visitors see them. This fix ensures the choices you make in the Offer form take effect, or removes options that do nothing. (#295)
-- **[Feature]** **Automatic performance projection for new offers** — An exploratory tool that estimates how a new offer is likely to perform based on your own historical offer data, giving you a data-driven gut-check at intake instead of relying on a manual review. (#322)
-- **[Bug]** **Auto-register offers now respect visitor targeting** — Auto-register offers were firing for everyone, ignoring age, gender, state, ZIP, and device targeting. This corrects them so they only fire for the visitors they're meant for. (#333)
-- **[Bug]** **bPerx voucher code missing from the offer preview** — The "Your Voucher Code" line isn't showing up in the offer preview on the test environment. This investigates and fixes the lookup so the voucher code appears in both preview and the live survey. (#344)
+- **[Feature]** **Bring campaign management into New Adsmith Frontend** — The Campaigns module from the older admin isn't in the new platform yet. Once added, you'll be able to view, create, edit, and configure campaigns (offer groups, offers, CTA text, and more) without going back to the legacy system. High priority. (#200)
+- **[Bug]** **Conversion pixels now fire on success** — Success-tracking pixels set up on offers currently never fire, so conversions go unrecorded with no visible warning. This fix makes configured pixels fire as expected. High priority. (#297)
+- **[Task]** **Auto-register offers will respect visitor targeting** — Auto-register offers currently ignore age, gender, state, ZIP, and device targeting and can fire for people they should exclude. This work makes them honor the same targeting rules as regular offers. High priority. (#333)
+- **[Bug]** **Saved offer settings that weren't reaching the live offer** — Several options you can set on an offer weren't actually being carried through to the live experience. This fix ensures saved settings take effect (or are cleaned up if unused). (#295)
+- **[Bug]** **bPerx voucher code missing from the offer preview** — On the preview page, the "Your Voucher Code" line isn't appearing the way it does in the legacy view. This fix restores the voucher code in preview and on the live survey. (#344)
+- **[Feature]** **Preview your unsaved changes on placements and offers** — Today the Preview button only shows the last-saved version. This upgrade lets you preview edits you've made but not yet saved, so you can check changes before committing them. (#292)
+- **[Feature]** **Automatic performance projection for new offers** — Instead of a manual gut-check, new offers could be scored against historical performance data to estimate how they're likely to do. Exploratory, no deadline. (#322)
 
 ## General / Across the App
+- **[Feature]** **Prevent two people from overwriting each other's edits** — When someone opens a record for editing, others will see it's locked and by whom, and you'll be warned before accidentally saving over another person's changes. (#267)
+- **[Feature]** **Searchable activity log** — A new admin log will record every change (manual or automated) with who did it and when, so you can answer "who changed this and when" and review history right from an entity's page. (#276)
+- **[Feature]** **Clean up admin controls that don't actually do anything** — Some fields (like Advertiser Web Presence links, certain user-permission toggles, and a few Data-Client and Pre-Ping options) are saved but have no effect. They'll be removed or hidden so the admin only shows controls that work. (#296)
+- **[Task]** **Users area gap review** — A comparison of the older Users screen against the new one to spot missing capabilities (like bulk actions, last-login, and two-factor status) and plan what to add. Behind-the-scenes analysis. (#80)
+- **[Task]** **Decide the future of the file-share page** — The legacy file-share page has no equivalent yet; this confirms whether it's still needed or can be retired. (#328)
+- **[Task]** **Consistent alert and banner colors** — Warning, info, success, and error banners currently look slightly different from page to page. This standardizes their colors so they look the same everywhere. (#341)
 
-- **[Feature]** **Editing protection so two people don't overwrite each other** — When someone is editing a record, others will see it's locked and by whom, and a safety check on save prevents accidentally wiping out a colleague's changes. High priority. (#267)
-- **[Feature]** **A searchable history of every change** — Administrators will get an "Audit Log" that records who changed what and when, across offers, placements, advertisers, and more, making it easy to answer "who changed this and why." (#276)
-- **[Feature]** **Cleaning up controls that don't do anything** — Several admin settings (like the Advertiser Web Presence fields and some user-permission toggles) look active but aren't actually connected to anything. They'll be removed or hidden so the screens only show controls that work. (#296)
-- **[Task]** **Decide the fate of the old file-share page** — The legacy file-share page has no equivalent in New Adsmith Frontend; this confirms whether anyone still needs it or whether it can be retired. Likely low priority. (#328)
-- **[Bug]** **Invalid links should show an error, not send you to the Dashboard** — When testing a bad link, you'll now get a clear failure message instead of being unexpectedly dropped onto the Dashboard. (#239)
+## Survey & Modals
+- **[Bug]** **Voucher code and info links missing on the live survey page** — Configured voucher codes and the privacy/terms/details links aren't showing on the new survey page even though they're saved. This fix restores them, matching the legacy display. High priority. (#291)
+- **[Feature]** **Design choices fully reflected in the survey** — An end-to-end check to make sure every design-tab option you set actually shows up in the survey, with no settings that quietly do nothing. (#288)
+- **[Feature]** **Finish connecting Placement design settings to the survey** — A few Placement Design-tab settings (like survey height and display format) are saved but not yet applied. This wires them up so they take effect (or removes any that aren't needed). (#293)
+- **[Feature]** **Make the Modal Design tab work or remove it** — The Modal Design tab's fields are currently saved but never shown to visitors. This either builds them into the modal or removes the tab so it isn't misleading. (#294)
 
-## Behind the Scenes
-
-- **[Task]** **A safe, read-only test environment** — Setting up an environment that mirrors real data for testing and verification, locked to read-only so nothing can be accidentally changed. (#270)
-- **[Feature]** **A Slack helper that files issues automatically** — An internal tool that turns action items from Slack conversations into tracked tasks, reducing manual copy-and-paste work for the team. (#272)
-- **[Task]** **Consistent colors for alerts and banners** — Standardizing the tint colors used for warning, info, error, and success banners so the same type of message looks identical on every screen. (#341)
-- **[Task]** **Stronger safeguards behind the editing-protection feature** — Behind-the-scenes hardening so the change-tracking used to prevent overwrites stays reliable even in rare, edge-case timing situations. (#342)
-
-## Surveys
-
-- **[Feature]** **Every design option should actually change the survey** — A full review to make sure each customization option in the design tabs is truly reflected on the live survey, with any dead options fixed or removed. (#288)
-- **[Bug]** **Voucher code and info links missing from the live survey** — On the new survey page, the configured voucher code line and the privacy/terms/details links aren't showing up even though they're set correctly in the admin. This restores them to match the previous system. High priority, and important for compliance. (#291)
-- **[Feature]** **Finish connecting Placement design settings to the survey** — Several Placement design-tab settings (like survey height and display format) are saved but not yet applied to what visitors see. This wires them through or removes the ones that aren't needed. (#293)
-
-## Data Clients & Pre-Pings
-
-- **[Feature]** **Restore post-conversion delivery behaviors** — The legacy "after-success" scripts that run once a lead converts weren't carried over. This brings that behavior back as a configurable option for the affected clients. Nearly complete. (#327)
-- **[Feature]** **Make display-trigger pre-ping checks actually run** — Certain pre-ping validations were only checking that a field existed rather than performing the real live check. This makes them work as before, hiding offers that get rejected. High priority. (#337)
-- **[Feature]** **Bring back per-client pre-ping validation** — Custom pre-ping checks tied to hundreds of data clients weren't carried into the new platform, meaning some serve-time validations silently weren't running. This restores that coverage. High priority. (#338)
+## Pre-Pings / Data Clients
+- **[Feature]** **Port legacy per-client pre-ping checks** — Custom serve-time validation for 448 data clients isn't running on the new platform yet. This work restores those checks so offers are validated as they were in the legacy system. High priority. (#338)
+- **[Feature]** **Display-trigger pre-ping runs a real check at serve time** — Currently this trigger only checks that fields exist rather than performing the actual validation. This makes it truly validate and hide offers that are rejected, matching legacy behavior. High priority. (#337)
+- **[Feature]** **Restore after-success delivery for data clients** — Post-conversion delivery/redirect behavior from the legacy system hasn't been carried over. This brings it back as a configurable option for the affected clients. (#327)
 
 ## Reports & Dashboard
-
-- **[Task]** **Confirm report numbers match the previous system** — Investigating why some Dashboard report figures differed from the legacy app, so you can trust that the numbers line up. (#271)
-- **[Feature]** **Fix zeroed-out offer impressions in placement reports** — Historical placement reports have been showing offer impressions as zero. This starts recording that figure so the reports show real numbers. (#339)
-
-## Campaigns
-
-- **[Feature]** **Bring the Campaigns area into New Adsmith Frontend** — The Campaigns module from the old system isn't in the new platform yet. This adds the ability to view, create, edit, and configure campaigns and their offer groups. Critical, high priority. (#200)
-
-## Modals
-
-- **[Feature]** **Make the Modal Design tab work (or remove it)** — All six settings on the Modal Design tab currently have no effect on the visitor-facing modal. This either wires them up so they apply or removes the tab if it isn't needed. (#294)
+- **[Task]** **Investigate report numbers not matching the legacy system** — Dashboard report figures didn't line up with the old app during testing. This digs into where the difference comes from and confirms the numbers are trustworthy. (#271)
+- **[Feature]** **Fix placement offer impressions showing zero** — Historical placement reports currently show zero offer impressions. This adds that figure so reports show real numbers. (#339)
 
 ## Flows
+- **[Task]** **Fix the appearance of the Flow form** — Parts of the Flow form look unstyled or broken (plain text boxes, unstyled color pickers, fields stacking instead of sitting side by side). This tidies up the layout to match the other forms. (#152)
 
-- **[Task]** **Tidy up the Flow form's appearance** — Parts of the Flow form look unstyled or misaligned compared to other forms. This cleans up the layout so text boxes, color pickers, and paired fields display properly. Partly done. (#152)
-
-## Admin / Users
-
-- **[Task]** **Compare the Users area against the old system** — A documentation review listing which Users features exist in New Adsmith Frontend versus the legacy app, so any missing pieces (like bulk actions or last-login info) can be prioritized. Mostly complete. (#80)
+## Behind the Scenes
+- **[Task]** **A safe testing environment using real-like data** — Setting up a staging version of the product connected to a read-only copy of production data, so testing can happen against realistic data without any risk of changing it. (#270)
+- **[Feature]** **Turn conversations into tracked work automatically** — A Slack helper that reads discussions and files the action items as tracked tasks, reducing manual copy-and-paste. (#272)
 
 ---
 
 _This page is generated automatically from open issues and refreshes regularly. Please don't edit it by hand — changes will be overwritten._
 
-<!-- issues-content-hash: 72540624e535d3919fd77d9fe303c83f136dbb2b7ca301364f9323720c202039 -->
+<!-- issues-content-hash: d828ce4664fc9cba1564cd2695994a77b840ef6c24e2f97a6adfd64aeb2b6b7f -->
