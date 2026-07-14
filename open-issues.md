@@ -1,81 +1,61 @@
 # Open Issues — Plain-Language Overview
 
-_Last updated 2026-06-23 00:48:26 UTC · 50 open issues._
+_Last updated 2026-07-14 21:20:52 UTC · 21 open issues._
 
 This page summarizes everything currently open and being worked on in New Adsmith
 Frontend, written for the people who use it day to day. Each item ends with its
 internal tracking number in parentheses, e.g. (#244).
 
-## Dashboard
-- **[Bug]** **Custom date range on the Dashboard** — Choosing "Custom" in the date filter will open a proper start/end date picker so you can view results for any range you like, not just the preset options. (#58)
-- **[Bug]** **Missing dashboard sections restored** — High priority. Campaign stats, top offers, and watch lists will load again alongside the system overview, and they'll update when you change the date range. (#240)
-- **[Feature]** **Light mode option** — You'll be able to switch the Admin between the current dark look and a new light theme, with your choice remembered next time you log in. (#59)
-- **[Feature]** **Working Edit, Preview, and Pull Leads buttons** — On Placement, Modal, Offer, and Advertiser detail pages, these buttons currently do nothing; they'll be wired up so they take you where you expect. (#154)
-- **[Feature]** **Sub-ID stats moved to the Dashboard** — The Sub-ID Stats view will live in the Dashboard reporting area instead of inside the placement form, where it's easier to find. (#236)
-- **[Feature]** **New monitoring views and an activity log** — An "Other Dashboard" area will add "Offer with Legs" and CLP performance views (flagging offers converting under 30%), plus a searchable log of changes like pausing offers or editing caps. (#256)
-- **[Feature]** **Full advertiser and placement names** — Long names will no longer be cut off with "…", so you can read them in full on dashboard views. (#260)
-- **[Feature]** **Cleaner tables without the ID column** — The ID/number column will be removed from dashboard tables to free up screen space. (#261)
-- **[Feature]** **Tidier publisher and property names** — Names will display only the part after the last colon (e.g. "Foo: Bar: Acme Publishing" shows as "Acme Publishing") for easier reading. (#262)
-- **[Feature]** **Consistent dashboard colors** — A defined color palette will be applied across the dashboard to improve readability. (#263)
-
 ## Offers
-- **[Bug]** **Offer images not showing** — Images on the offer form aren't appearing; this will be investigated and fixed so offer creatives display properly. (#247)
-- **[Bug]** **Formatted text and link-out in offer preview** — Fields like More Info and TCPA content currently show raw code instead of styled text and links, and link-out offers don't work from the preview. Both will be corrected. (#259)
-- **[Bug]** **Advertiser names in the Offers report** — Some offers still show no advertiser; this data issue will be resolved so every offer lists its advertiser. (#242)
-- **[Feature]** **Set more fields when creating an offer** — High priority. Piggyback offers, HD pixel placements, and ZIP code targeting will be available right when you create an offer, instead of having to save first and then edit. (#142)
-- **[Feature]** **Enforce required pre-ping fields before sending** — When a pre-ping runs before pushing data, leads missing required fields will be stopped up front rather than relying on the advertiser's response. (Confirmation needed before this change.) (#218)
-- **[Feature]** **15-minute detail on offer stats** — The offer detail timespan chart will show 15-minute increments again, helping you spot offer or partner issues quickly. (#243)
-- **[Feature]** **Clearer offer status colors** — Paused will be red, Active green, and Capped yellow/orange so the three are easy to tell apart at a glance. (#246)
-- **[Feature]** **Faster advertiser and state entry on offers** — The Advertiser selector gets a type-to-search box, and state targeting will accept a typed or pasted comma-separated list like "CA, TX, FL". (#249)
-- **[Feature]** **Add a whole offer group to Conflicting Offers** — On the Delivery & Settings tab you'll be able to add every offer in a group to the conflicting list in one step, saving lots of manual work. (#250)
-- **[Task]** **Quick action links under each offer** — Legacy-style links (Edit, Quick Edit, Trash, View, Preview, Trends, Details) will appear beneath each offer, with Trends opening an offer activity/performance page. (#252)
 
-## Flows
-- **[Bug]** **Turn header and footer on or off** — The flow form will get controls to enable or disable the header, footer, and other sections, which is currently not possible. (#225)
-- **[Task]** **Flow form styling fixes** — The Flow form has unstyled text boxes, color pickers, and stacked fields; this cleanup brings its look in line with the Placement and Modal forms. (#152)
-- **[Feature]** **"Add all fields" button** — Instead of adding form fields one at a time, you'll be able to add every available field at once. (#224)
-- **[Feature]** **Clearer step-order setting** — The step-order control will get plain-language labels and help text so it's obvious what it does. (#226)
-
-## Surveys
-- **[Bug]** **Visitors stuck on CPA offers** — High priority. Right now a visitor must click "Yes" to continue with no way to decline or move on; this will be fixed so they can proceed or exit. (#233)
-- **[Feature]** **Skip the extra "Claim your offers" page** — Visitors will land directly on the form fields instead of seeing an intro page first. (#228)
-- **[Feature]** **Better TCPA consent checkbox** — The consent checkbox will be larger, rounded, and properly aligned with its text. (#229)
-- **[Feature]** **Footer copyright and site name** — The landing page footer will show the copyright line and site name pulled from your General Information. (#232)
-
-## Placements
-- **[Bug]** **Familiar placement form and missing links** — The create/edit form will be reviewed against the legacy version to clear up unrecognized fields and restore missing links like Preview and Details. (#234)
-- **[Feature]** **Reorder assigned offers easily** — Offer assignment will default to Manual Order with drag-and-drop reordering, an "X" to remove offers, and the ability to filter by taxonomy. (#235)
-- **[Feature]** **Drag-and-drop offer assignment (from UAT)** — The same offer transfer improvements raised in testing: manual ordering, drag-and-drop, an "X" to remove, and taxonomy filtering. (#255)
+- **[Bug]** **Success tracking pixels aren't firing** — Conversion pixels set up on offers currently never fire because of a format mismatch, which means successful leads aren't being counted. This fix makes configured success pixels fire reliably so you don't lose attribution or revenue signals. (#297)
+- **[Bug]** **Some saved offer settings never reach the live experience** — Several offer options you fill in (including offer-level modal fields, Display URL, and certain data-client flags) are being dropped before they reach visitors. This work makes each of those fields either take effect or be clearly retired, so what you save is what visitors get. (#295)
+- **[Task]** **Auto-register offers now respect visitor targeting** — Auto-register offers have been firing for everyone, ignoring age, gender, state, ZIP, and device targeting. This ensures they only fire for the visitors they're meant for (or documents the difference on purpose). (#333)
+- **[Feature]** **Preview unsaved changes on offers and placements** — Today the Preview button shows the last saved version, so you have to save before you can check an edit. Soon Preview will reflect your current, unsaved changes right away. (#292)
+- **[Feature]** **Automatic performance projections for new offers** — Instead of relying on a manual gut-check, new offers could be scored against your historical offer data to estimate likely performance. This is an exploratory tool to help judge new offers at intake. (#322)
 
 ## General / Across the App
-- **[Feature]** **Campaigns module** — Critical, high priority. The Campaigns area from the legacy system will be added so you can create, edit, and manage campaigns and offer groups in New Adsmith Frontend. (#200)
-- **[Task]** **Users management review** — A review comparing the legacy and new Users screens to plan which missing options (bulk actions, last login, and more) to bring over. (#80)
-- **[Feature]** **Brand guidelines as a standard** — A comprehensive brand-guidelines document will be created and used to drive more consistent, on-brand output. (#264)
 
-## Link Testing
-- **[Bug]** **Clear error for invalid links** — Testing an invalid link will show a proper failure message instead of bouncing you to the dashboard. (#239)
-- **[Feature]** **Remember the placement you started from** — Opening Link Testing from a placement will pre-select that placement so you don't have to pick it each time. (#238)
+- **[Feature]** **Protection against two people overwriting the same record** — When two admins edit the same offer, flow, placement, advertiser, or other record at once, one person's changes can silently wipe out the other's. This adds an editing lock and a warning so you'll see when someone else is already editing and won't lose work. (#267)
+- **[Feature]** **A searchable history of who changed what** — There's currently no easy way to see who paused an offer, changed a cap, or edited a placement, and when. This adds an audit log across the app, plus a per-record history, so you can trace every manual and automated change. (#276)
+- **[Feature]** **Cleaning up controls that don't actually do anything** — Some admin settings (an Advertiser "Web Presence" tab, a couple of user permission toggles, and a few Data-Client and Pre-Ping options) look active but currently have no effect. These will be removed or hidden so the screens only show controls that truly work. (#296)
+- **[Task]** **Users screen catch-up with the old system** — A review of the older Users management against the new one to spot missing capabilities (like bulk role changes, last-login and two-factor status, and password/notification options on the add-user form). This guides bringing the new Users area up to par. (#80)
+- **[Task]** **Decision on the old file-share page** — The previous system had a file-share page with no equivalent here yet. This confirms whether anyone still needs it or whether it can be retired. (#328)
 
-## Properties
-- **[Feature]** **Search the publisher list** — The publisher selector on the property form gets a type-to-search box so you don't have to scroll to find one. (#237)
+## Surveys
+
+- **[Feature]** **Design-tab options that actually show up in the survey** — An across-the-board check to make sure every look-and-feel option on the design tab genuinely changes what visitors see, with no settings that quietly do nothing. (#288)
+- **[Feature]** **Finishing the Placement design settings for the survey widget** — A handful of placement design settings (like iframe height and display format) are saved but not yet applied to the live survey. This wires them up so they take effect, or removes any that aren't needed. (#293)
+
+## Data Clients & Pre-Pings
+
+- **[Feature]** **Restoring post-conversion delivery for data clients** — Certain after-success delivery and redirect behaviors from the old system weren't carried over yet. This brings them back in a flexible, settings-driven way so active data clients keep working as before. (#327)
+- **[Feature]** **Restoring custom pre-ping checks for data clients** — Hundreds of data clients relied on custom serve-time validation checks that don't run on the new platform yet. This ports those checks so the right offers are shown or blocked as intended. (#338)
+
+## Dashboard & Reports
+
+- **[Task]** **Making the new reports match the old numbers** — During testing, dashboard report figures didn't line up with the previous system, which made verification hard. This investigation pins down why and confirms the numbers are accurate. (#271)
+- **[Bug]** **Clear error for a bad test link** — Testing an invalid link currently dumps you back on the dashboard with no explanation. This fix shows a clear failure message so you know the link didn't work and why. (#239)
+
+## Modals
+
+- **[Feature]** **Making the Modal design settings count** — The entire Modal design tab is saved but never shown to visitors. This either wires those header and progress-bar settings into the visitor modal or removes the tab if the modal is meant to be header-less. (#294)
+
+## Flows
+
+- **[Task]** **Tidying up the Flow form's appearance** — Parts of the Flow form look unstyled or misaligned, with fields stacking oddly and plain-looking text boxes and color pickers. This is a careful cleanup so the Flow form looks consistent with the Placement and Modal forms. (#152)
+
+## Campaigns
+
+- **[Feature]** **Bringing the Campaigns area to the new platform** — Campaign management (creating and editing campaigns, offer groups, CTA text, offer handling, and more) isn't available in the new platform yet. This adds a Campaigns area matching what the old system offered. (#200)
 
 ## Behind the Scenes
-- **[Bug]** **Data sync and stats accuracy** — Critical blocker. The process that copies production data to the test environment is overwriting records and leaving some stats and offer details blank; this work fixes data accuracy so yesterday's stats and offer information show correctly. (#241)
-- **[Task]** **Today's live stats** — Behind-the-scenes work to power up-to-the-day impression, click, lead, and revenue figures for the dashboard. (#34)
-- **[Task]** **Rolling up historical stats** — Maintenance to summarize live stats into daily totals for reliable historical reporting. (#35)
-- **[Task]** **Review of an old stats job** — Checking whether a legacy subid-a stats process is still needed or can be retired. (#33)
-- **[Task]** **Pre-ping accuracy testing** — Running the new pre-ping process alongside the old one to confirm results match before switching over. (#40)
-- **[Task]** **Per-advertiser pre-ping checks** — Verifying each active advertiser's pre-ping works correctly ahead of the switch. (#41)
-- **[Task]** **Faster survey performance** — High priority. Adding a caching layer so surveys, offers, and caps load and check more quickly. (#42)
-- **[Task]** **Parallel run of scheduled jobs** — Running new and old background jobs side by side in production to compare results. (#43)
-- **[Task]** **Retiring background jobs, group 3** — Switching off the lowest-risk legacy survey-stats job after the replacement proves stable. (#44)
-- **[Task]** **Retiring background jobs, group 2** — Switching off additional legacy stats jobs once the prior group is stable. (#45)
-- **[Task]** **Retiring background jobs, group 1** — Critical. Switching off the most important legacy lead-processing and cap-reset jobs last, with close monitoring. (#46)
-- **[Task]** **Rollback procedures** — Documenting how to safely revert each production system if something goes wrong. (#48)
-- **[Task]** **Troubleshooting runbooks** — Creating step-by-step guides for handling common issues like lead-processing or stats failures. (#49)
+
+- **[Task]** **A safe, read-only testing environment** — Setting up a testing copy of the app loaded with production-like data that can't be changed, so the team can verify behavior without any risk to live data. (#270)
+- **[Feature]** **Turning conversations into tracked work automatically** — A helper that reads designated chat channels and files action items as tracked issues, cutting out manual copy-paste and reducing the chance things slip through. (#272)
 
 ---
 
 _This page is generated automatically from open issues and refreshes regularly. Please don't edit it by hand — changes will be overwritten._
 
-<!-- issues-content-hash: 56a32f4c7fb7a8cf5da851848990923ce422a0050b61e7812ca5d1ca22f7aaa6 -->
+<!-- issues-content-hash: cd6568ac8a6e878837700846282082d0575aaaa68d6d2ab17fcf8602934c2eeb -->
