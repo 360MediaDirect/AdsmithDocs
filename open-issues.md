@@ -1,6 +1,6 @@
 # Open Issues — Plain-Language Overview
 
-_Last updated 2026-07-21 17:31:31 UTC · 18 open issues._
+_Last updated 2026-07-22 06:49:31 UTC · 16 open issues._
 
 This page summarizes everything currently open and being worked on in New Adsmith
 Frontend, written for the people who use it day to day. Each item ends with its
@@ -8,51 +8,49 @@ internal tracking number in parentheses, e.g. (#244).
 
 ## Offers
 
-- **[Feature]** **Preview offers and placements with your unsaved changes** — When editing an offer or placement, the Preview button will show exactly what you've changed on screen, even before you save, so you no longer have to save just to check how an edit looks. (#292)
-- **[Bug]** **Some saved offer options never reach the live ad** — A number of offer settings you fill in (including the Modal-tab options, "Force More Info Visible," Display URL, and several data-client flags) are currently being dropped and never take effect. This fix makes sure the options you configure actually apply. (#295)
-- **[Bug]** **Success tracking pixels aren't firing** — Conversion/success pixels set up on offers silently never fire, which means conversions aren't being recorded. This high-priority fix ensures a configured success pixel actually fires when a conversion happens, protecting your attribution and revenue tracking. (#297)
-- **[Feature]** **Automatic performance projection for new offers** — Instead of relying on a manual gut-check, new offers could be scored automatically against your historical offer data to estimate how they're likely to perform. This is an exploratory decision aid to help judge new offers at intake. (#322)
-- **[Bug]** **Auto-register offers ignore visitor targeting** — Auto-register offers currently fire for every visitor even when age, gender, state, zip, or device targeting should exclude them. This high-priority fix makes these offers respect the same targeting rules as regular offers. (#333)
-- **[Bug]** **"Conflicting Referrals" field has no effect** — The Conflicting Referrals box on the offer Delivery tab is saved but currently does nothing at serve time. This work confirms the intended behavior and wires it up so the setting is either enforced or removed to avoid confusion. (#351)
+- **[Feature]** **Preview offers and placements with your unsaved edits** — When you click Preview while editing an offer or placement, you'll see your latest changes right away instead of having to save first. This makes it much easier to check how a change looks before committing to it. (#292)
+- **[Bug]** **Some saved offer settings weren't reaching the live ad** — A number of offer options (including certain modal settings, Display URL, and several delivery-related flags) were being saved but never actually applied when the offer went live. This fix makes sure the options you set on an offer take effect. (#295)
+- **[Feature]** **Automatic performance projections for new offers** — An exploratory feature to estimate how a new offer is likely to perform based on your historical offer data, replacing the current manual gut-check review. This would give you a quick, data-driven read on a new offer at intake. (#322)
+- **[Bug]** **"Conflicting Referrals" field currently does nothing** — The Conflicting Referrals box on an offer's Delivery tab is saved but has no effect on which offers get served. This is being reviewed to confirm the intended rule and then make the field actually work (or be removed) so it's not misleading. (#351)
 
 ## Surveys
 
-- **[Feature]** **Design tab options fully connected to what visitors see** — Every customization on the survey Design tab will actually be reflected in the live survey view, and all form options across the product will be audited so nothing is left disconnected. You'll be able to trust that the options you set genuinely change the output. (#288)
-- **[Feature]** **Placement design settings now shown in the survey widget** — Several placement Design-tab settings (like iFrame height and display format) are saved but not yet applied to the live widget. This finishes connecting them so your placement styling and behavior choices take effect. (#293)
+- **[Feature]** **Make sure every survey design option actually works** — A full review across all entity screens to confirm that each customization option you set on a design tab genuinely shows up in the live survey. Any options that don't do anything will be fixed or removed, so what you configure is what visitors see. (#288)
+- **[Feature]** **Finish connecting Placement design settings to the live survey** — Several Placement design options (like survey height and display format) are saved but aren't yet reflected in the survey visitors see. This work wires them up so those settings take effect. (#293)
 
-## Data Clients & Pre-Pings
+## Data Clients
 
-- **[Feature]** **Post-conversion delivery behavior restored for clients** — Certain after-success actions from the legacy system (post-conversion delivery and redirect steps for specific clients) weren't carried over. This work brings that behavior back so those clients keep working as before. (#327)
-- **[Feature]** **Bring over legacy pre-ping validation for data clients** — Custom serve-time validation used by hundreds of data clients in the old system doesn't currently run on the new platform. This high-priority work restores that checking so those clients' pass/reject rules apply again before serving. (#338)
-
-## Behind the Scenes
-
-- **[Task]** **A safe, read-only testing environment** — Setting up a staging version of New Adsmith Frontend using a copy of real data, locked to read-only, so the team can verify behavior against realistic data without any risk of changing live records. (#270)
-- **[Feature]** **A Slack helper that turns conversations into tracked work items** — A behind-the-scenes assistant that reads designated Slack discussions and automatically logs action items as tracked tasks, reducing manual note-taking and follow-up. (#272)
-
-## Reports & Dashboard
-
-- **[Task]** **Confirming dashboard report numbers match the old system** — During testing, some Dashboard report figures didn't line up with the legacy system. This investigation compares the two over a fixed date range, pinpoints any differences, and confirms the numbers can be trusted. (#271)
-
-## Advertisers & General / Across the App
-
-- **[Feature]** **Remove admin controls that don't actually do anything** — Several settings (the Advertiser Web Presence fields, certain user-permission toggles, and a few data-client and pre-ping options) are saved but have no real effect. Removing or hiding them prevents confusion and false expectations about what they control. (#296)
-
-## Properties
-
-- **[Bug]** **Domain allowlist will finally be enforced** — The allowed-domains list on a Property is editable today but isn't actually applied, so ads serve on any site. This fix makes the allowlist work: only approved hostnames will serve the ad, while properties that leave the list empty are unaffected. (#350)
-
-## Flows
-
-- **[Task]** **Clean up the Flow form's appearance** — Parts of the Flow form look unstyled or misaligned compared to other forms (plain text boxes, unstyled color pickers, and fields that stack instead of sitting side by side). This work tidies the layout so the Flow form looks consistent with the rest of the app. (#152)
+- **[Feature]** **Bring over post-conversion delivery behavior from the old system** — Certain after-success actions (such as follow-up redirects and delivery scripts) from the legacy platform hadn't been carried over yet. This restores that behavior so affected data clients keep working as before. (#327)
+- **[Feature]** **Restore custom pre-ping checks for data clients** — Hundreds of data clients relied on custom serve-time validation in the old system that isn't running on the new platform yet. High priority. This brings those checks back so leads are validated the way they were before. (#338)
 
 ## Modals
 
-- **[Feature]** **Make the Modal Design tab do something (or remove it)** — The Modal Design tab's header and progress-bar settings are saved but never appear on the visitor modal. This work either wires them up so they display, or removes the tab if the modal is meant to be header-less. (#294)
+- **[Feature]** **Make the Modal Design tab work or remove it** — The entire Modal Design tab (header text, colors, progress bar, and more) is currently saved but never shown to visitors. This work will either make those settings appear in the visitor modal or remove the tab so it isn't misleading. (#294)
+
+## Flows
+
+- **[Task]** **Tidy up the look of the Flow form** — Parts of the Flow form currently appear unstyled or misaligned compared to other forms, with fields stacking oddly and plain-looking text boxes and color pickers. A careful cleanup will bring the Flow form in line with the polished look of the Placement and Modal forms. (#152)
+
+## Properties
+
+- **[Bug]** **Domain allowlist wasn't actually blocking other sites** — The allowed-domains list on a Property is saved but currently isn't enforced, so ads could serve from any website. High priority. This fix ensures that when you set an allowlist, only the listed sites can serve the ads. (#350)
+
+## Dashboard & Reports
+
+- **[Task]** **Confirm report numbers match the old system** — Reviewers noticed dashboard report figures didn't line up with the legacy app. This investigation compares the two over a fixed date range to find any differences, explain the cause, and confirm the numbers can be trusted. (#271)
 
 ## Admin & Users
 
-- **[Task]** **Comparing the new Users area against the old one** — A documentation review that maps what the legacy Users management offered versus the new Users screen, so any missing capabilities (like bulk role changes, last-login info, and 2FA status) are identified and prioritized. (#80)
+- **[Task]** **Review of the Users area against the old system** — A detailed comparison of the Users screens in New Adsmith Frontend versus the legacy app, identifying missing capabilities (like bulk role changes and last-login info) so the team can prioritize what to add. (#80)
+
+## General / Across the App
+
+- **[Feature]** **Remove admin controls that don't do anything** — Several settings across the app (such as the Advertiser Web Presence fields, certain user permission toggles, and some data-client and pre-ping options) are saved but have no real effect. These will be hidden or removed so the admin screens only show controls that actually work. (#296)
+
+## Behind the Scenes
+
+- **[Task]** **Set up a safe, read-only test environment** — A separate environment loaded with production-like data for verification and testing, locked down so no changes can be made to it. This lets the team validate the product against realistic data without any risk to live information. (#270)
+- **[Feature]** **Turn team conversations into tracked work items automatically** — An internal helper that reads designated chat channels and files follow-up tasks automatically, reducing manual copy-and-paste. No direct effect on the product screens you use. (#272)
 
 ---
 
