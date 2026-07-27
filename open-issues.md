@@ -1,48 +1,40 @@
 # Open Issues — Plain-Language Overview
 
-_Last updated 2026-07-26 06:52:40 UTC · 14 open issues._
+_Last updated 2026-07-27 07:03:42 UTC · 14 open issues._
 
 This page summarizes everything currently open and being worked on in New Adsmith
 Frontend, written for the people who use it day to day. Each item ends with its
 internal tracking number in parentheses, e.g. (#244).
 
 ## Offers
-
-- **[Feature]** **Preview unsaved changes on placements and offers** — When editing a placement or offer, the Preview button will show your latest changes right away, so you no longer have to save first just to see how an edit looks. (#292)
-- **[Bug]** **Some saved offer options weren't showing to visitors** — A number of offer settings you fill in (including modal-related options and display details) weren't making it through to the live experience. This fix ensures the choices you save actually take effect, or removes any options that do nothing. (#295)
-- **[Feature]** **Automatic performance projections for new offers** — An exploratory feature that estimates how a new offer is likely to perform based on your historical offer data, giving you a data-driven gut-check at intake instead of relying on a manual review. (#322)
+- **[Feature]** **Preview shows your unsaved changes** — When you use Preview on a placement or offer while editing, you'll see exactly how your in-progress edits look, without having to save first. (#292)
+- **[Bug]** **Some offer settings not reaching live pages** — Several saved offer options (including modal fields, display URL, and certain delivery flags) currently don't carry through to what visitors actually see. This fix makes sure each saved option either works end-to-end or is cleaned up so nothing is misleading. (#295)
+- **[Feature]** **Automatic performance estimate for new offers** — Instead of relying on a manual gut-check, new offers will get a data-driven projection of how they're likely to perform, based on your own historical offer results. A helpful decision aid at intake time. (#322)
 
 ## Surveys
-
-- **[Feature]** **Make sure every design option actually changes the survey** — A thorough review across all entities to confirm that each customization option you set on a Design tab is truly reflected in what visitors see, with any non-working options fixed or removed. (#288)
-- **[Feature]** **Finish connecting Placement design settings to the live survey** — A handful of Placement design options (such as height and display format) will properly take effect in the survey visitors see, and any leftover options that don't do anything will be cleaned up. (#293)
+- **[Feature]** **Design choices show up in the live survey** — Every customization you set on the Design tab will actually appear in the survey visitors see. Part of a wider review to make sure no form option is left doing nothing. (#288)
+- **[Feature]** **Finish connecting Placement design settings** — Placement Design-tab options like display format and height, plus a few others, will be fully applied to the live survey (or removed if not needed), so what you configure is what visitors get. (#293)
 
 ## Data Clients
-
-- **[Feature]** **Bring post-conversion delivery steps to the new platform** — Certain after-success behaviors (delivery and redirect steps that run once a visitor converts) from the older system are being carried over, so those clients keep working as before. (#327)
-- **[Feature]** **Restore custom pre-ping checks for data clients** — High priority. Many data clients rely on custom validation that runs before a lead is served, and that logic isn't yet active on the new platform. This work restores those checks so leads are validated the same way they used to be. (#338)
+- **[Feature]** **Restore post-conversion delivery steps** — The follow-up actions that run after a successful conversion (delivery and redirect behavior) are being brought over to New Adsmith Frontend so those clients keep working as before. Nearly complete. (#327)
+- **[Feature]** **Restore custom pre-check validation** — A high-priority effort to bring over the custom serve-time checks used by hundreds of data clients, so leads are validated the same way they were in the old system. (#338)
 
 ## General / Across the App
-
-- **[Task]** **Comparing the old and new Users area** — A detailed review of the Users section against the previous system to spot missing pieces (like bulk actions, last-login info, and two-factor status) so the new Users area can catch up to what you had before. (#80)
-- **[Feature]** **Remove admin controls that don't do anything** — Some settings across Advertisers, Users, Data Clients, and Pre-Pings currently save but have no effect. These misleading controls will be hidden or removed so what you see in the admin area is trustworthy and accurate. (#296)
+- **[Feature]** **Remove buttons and options that do nothing** — Certain admin controls (Advertiser web-presence fields, some user permission toggles, and a few data-client and pre-ping options) currently save but have no effect. These will be removed or hidden so the screens only show settings that truly work. (#296)
+- **[Task]** **Users area feature review** — A documentation review comparing the old Users management screens to the new ones, so any missing capabilities (like bulk actions or extra columns) are identified and prioritized. (#80)
 
 ## Behind the Scenes
-
-- **[Task]** **A safe, look-only test environment** — Setting up a separate testing environment loaded with realistic data where changes can't accidentally be saved, so the team can verify the product against real-world numbers. (#270)
-- **[Feature]** **Turn Slack conversations into tracked work items** — A helper that reads team conversations and automatically files the resulting to-dos, reducing manual note-taking and making sure requests don't slip through the cracks. (#272)
-
-## Reports
-
-- **[Task]** **Checking dashboard report numbers against the old system** — An investigation into why some dashboard figures didn't match the previous system, to pin down the cause and confirm the numbers you see are accurate. (#271)
-
-## Flows
-
-- **[Task]** **Tidy up the look of the Flow form** — Some parts of the Flow form appear unstyled or awkwardly stacked. This work brings its appearance in line with the Placement and Modal forms so paired fields sit side by side and everything looks polished. (#152)
+- **[Task]** **Safe practice environment for testing** — A separate, look-but-don't-touch copy of the app running against realistic data, so the team can verify things against production-like numbers without any risk of changing live data. (#270)
+- **[Feature]** **Automatic issue capture from team chats** — A helper that reads designated chat conversations and turns action items into tracked tasks automatically, reducing manual copy-and-paste and duplicate entries. (#272)
 
 ## Modals
+- **[Feature]** **Make the Modal Design tab work — or remove it** — The Modal Design tab's header and progress-bar settings currently have no effect on the modal visitors see. This work will either make those settings apply or remove the tab so it isn't misleading. (#294)
 
-- **[Feature]** **Make the Modal Design tab actually work (or remove it)** — The Modal Design tab's settings (header text, colors, progress bar) currently have no effect on what visitors see. This work will either make those options work or remove the tab so it isn't misleading. (#294)
+## Flows
+- **[Task]** **Tidy up the Flow form's appearance** — Some parts of the Flow form look unstyled or stack awkwardly instead of sitting side-by-side. This cleanup brings its look in line with the Placement and Modal forms. Partly done, with the rest being handled carefully to avoid disrupting other tabs. (#152)
+
+## Dashboard
+- **[Task]** **Confirm dashboard numbers match the old system** — An investigation into why some Dashboard report figures didn't line up with the legacy system, to pin down the cause and confirm the new numbers are accurate. (#271)
 
 ---
 
