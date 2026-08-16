@@ -1,6 +1,6 @@
 # Open Issues — Plain-Language Overview
 
-_Last updated 2026-08-15 06:05:37 UTC · 20 open issues._
+_Last updated 2026-08-16 06:06:06 UTC · 20 open issues._
 
 This page summarizes everything currently open and being worked on in New Adsmith
 Frontend, written for the people who use it day to day. Each item ends with its
@@ -8,53 +8,53 @@ internal tracking number in parentheses, e.g. (#244).
 
 ## Offers
 
-- **[Bug]** **Some saved offer options never reach the live ad** — Several settings you can enter on an offer (including its Modal-tab fields, Display URL, and certain data-delivery options) aren't currently carried through to the visitor experience. This work makes sure every option that appears on the form actually takes effect, or is removed if it's not needed. (#295)
-- **[Bug]** **Can't set a survey to Display or AR on an offer** — On the Offer Details Delivery tab, the Display and AR choices show as column headers but have no selectable controls, so you can't assign a survey's delivery mode. This restores those selections so you no longer have to fall back to the legacy app. (#371)
-- **[Bug]** **Offer edits aren't showing up in History** — When you edit and save an offer, the change isn't recorded in the offer's History section. This fix makes your edits appear in History as expected. (#380)
-- **[Bug]** **Manually selected offers coming across empty** — On placements set to Manual delivery, the list of hand-picked offers isn't carrying over, so the wrong offers can display. This fixes the migration so your selected offers (and their order) show and serve correctly. (#370)
-- **[Feature]** **Preview your unsaved changes on placements and offers** — The Preview button will show the edits you're currently making, instead of only the last saved version, so you can check your work without saving first. (#292)
-- **[Feature]** **Automatic performance projections for new offers** — An exploratory tool that estimates how a new offer is likely to perform based on your historical offer data, giving Kurt a data-driven gut-check at intake instead of a manual review. (#322)
+- **[Feature]** **Preview your changes before saving** — On the Placement and Offer edit screens, the Preview will show exactly what you've just typed in, including edits you haven't saved yet, so you no longer have to save first just to check how something looks. (#292)
+- **[Bug]** **Some saved offer options weren't reaching live pages** — Several offer settings you can fill in (including Modal-tab fields, "Force More Info Visible," Display URL, and certain data-delivery flags) were being saved but never actually used on the live experience. We're fixing each one so it either takes effect or is removed to avoid confusion. (#295)
+- **[Feature]** **Automatic performance projections for new offers** — Exploring a way to estimate how a new offer is likely to perform based on your own historical offer data, giving Kurt a data-driven gut-check at intake instead of relying on a manual review. (#322)
+- **[Bug]** **Set surveys to Display or AR again** — On the Offer Details Delivery tab, the controls for assigning a survey to Display or AR are currently missing. This fix restores those selectable options so you can configure delivery mode without going back to the old app. (#371)
+- **[Bug]** **Offer edits will show up in History** — Right now, changing a field on an offer doesn't always create a History entry, so the record looks like nothing changed. This fix makes sure every real edit is recorded with who made it and when. (#380)
+- **[Bug]** **Manually selected offers now carry over correctly** — On Manual-delivery placements, the list of hand-picked offers wasn't transferring from the old app, leaving the "Selected Offers" panel empty and showing the wrong offers to visitors. This fix preserves your selected offers and their order. (#370)
 
 ## Surveys
 
-- **[Feature]** **Make sure every design option actually works** — A thorough check across all entities to confirm that each customization you set on a Design tab is truly reflected in the live survey, with any settings that do nothing either fixed or removed. (#288)
-- **[Feature]** **Finish connecting Placement design settings** — A handful of placement Design-tab settings (like iFrame height and display format) are saved but not yet applied to the live survey. This wires them through so they take effect, and cleans up any that aren't used. (#293)
+- **[Feature]** **Design-tab customizations actually show in the survey** — Making sure every option on the Design tab is fully connected to what visitors see, and checking every entity's form so no setting is a dead end that quietly does nothing. (#288)
+- **[Feature]** **Finish connecting Placement Design settings** — A handful of Placement Design-tab options (like iFrame height, display format, and skip/more-info toggles) are saved but not yet reflected in the live widget. This finishes wiring them up so they take effect, or removes any that aren't needed. (#293)
 
 ## Data Clients
 
-- **[Feature]** **Restore post-conversion delivery steps** — Certain after-conversion delivery and redirect behaviors from the legacy system weren't yet available in New Adsmith Frontend. This brings those behaviors back so affected clients keep working as before. (#327)
-- **[Feature]** **Bring across custom pre-delivery validation checks** — Hundreds of data clients rely on custom serve-time validation that isn't yet running on the new platform. This high-priority work ports those checks so leads are validated consistently. (#338)
+- **[Feature]** **Restore post-conversion delivery behavior** — Certain after-conversion delivery and redirect steps from the old system hadn't been carried over. This brings them back so those clients keep working as before. (#327)
+- **[Feature]** **Bring back custom pre-delivery checks** — A large group of data clients relied on custom validation that runs before a lead is delivered, and that logic wasn't active on the new platform. This high-priority work restores those checks so leads are validated consistently. (#338)
+
+## Admin / Users
+
+- **[Task]** **Closing the gap on the Users area** — A detailed comparison of the old and new Users screens to identify what's missing (like bulk actions, last-login and two-factor details, and password/notification options) and prioritize bringing those capabilities into New Adsmith Frontend. (#80)
+- **[Feature]** **Remove buttons and fields that don't do anything** — Some admin controls (Advertiser Web Presence fields, certain user-permission toggles, and a few data-client and pre-ping options) are saved but have no effect. We're hiding or removing them so nothing implies a capability that isn't really there. (#296)
 
 ## Dashboard & Reports
 
-- **[Task]** **Investigate mismatched report numbers** — During testing, dashboard report figures didn't match the legacy system. This looks into where the difference comes from and either fixes it or confirms the numbers are correct. (#271)
-- **[Feature]** **Add notes to Placements, Advertisers, and Offers** — You'll be able to attach short, categorized notes (with a topic and priority) directly from a Placement, Advertiser, or Offer detail page, and see a recent-notes roll-up on the main Dashboard — matching what the legacy app offered. (#382)
-
-## General / Across the App
-
-- **[Task]** **Bring user management up to par with the legacy app** — A review of the Users area against the older system to identify what's still missing (such as bulk actions and extra columns) so user management feels complete. (#80)
-- **[Feature]** **Remove settings that don't do anything** — Several admin controls (like the Advertiser Web Presence tab, some user-permission toggles, and a few data-client and pre-ping options) currently save but have no effect. Hiding or removing them prevents confusion about what's actually in use. (#296)
-
-## Behind the Scenes
-
-- **[Feature]** **Auto-create tasks from Slack conversations** — An internal helper that turns action items from Slack discussions into tracked tasks automatically, reducing manual copy-and-paste. This is an internal workflow tool with no direct effect on the product screens. (#272)
-- **[Task]** **Strengthen automated testing** — Behind-the-scenes improvements to the automated test suite so issues are caught more reliably before release. No user-facing change. (#379)
-
-## Advertisers
-
-- **[Feature]** **Show Web Presence links on the Advertiser detail page** — The website, social profile, and "Search on Google" links you enter for an advertiser will appear as a set of quick-access icons in the page header, just like in the legacy app. (#383)
-
-## Flows
-
-- **[Task]** **Fix styling on the Flow form** — Parts of the Flow form currently look unstyled or misaligned (plain text boxes, unstyled color pickers, fields stacking instead of sitting side by side). This tidies up the layout to match the other forms. (#152)
+- **[Task]** **Making sure report numbers match the old system** — Dashboard report figures didn't line up with the legacy app during testing. We're comparing the two over a fixed date range to find where the difference comes from and confirm the numbers are trustworthy. (#271)
+- **[Feature]** **Add notes to Placements, Advertisers, and Offers** — Bringing back the ability to attach short, categorized notes to a Placement, Advertiser, or Offer from its detail page, with a recent-notes roll-up on the main Dashboard, so your team can leave context right where it's needed. (#382)
 
 ## Modals
 
-- **[Feature]** **Make the Modal Design tab do something (or remove it)** — The Modal Design tab's fields (header text, colors, progress bar) are saved but don't appear in the visitor modal. This either wires them up so they show or removes the tab if it isn't needed. (#294)
+- **[Feature]** **Make the Modal Design tab actually work** — Every field on the Modal Design tab (header title, subtitle, colors, progress bar, and more) currently saves but never appears in the visitor modal. This will either connect those fields so they display or remove the tab if the modal is meant to be header-less. (#294)
 
 ## Publishers
 
-- **[Bug]** **Pausing a publisher or property doesn't always stick** — On one of the serving paths, pausing a publisher or property isn't being enforced. This fix makes sure a paused publisher or property is reliably blocked everywhere. (#299)
+- **[Bug]** **Pausing a publisher or property will reliably stop serving** — A check meant to honor a paused publisher or property wasn't working on one of the serving paths, so pausing didn't always take effect. This fix makes pausing enforced consistently. (#299)
+
+## Flows
+
+- **[Task]** **Tidy up the look of the Flow form** — Parts of the Flow form appear unstyled or stacked awkwardly compared to other forms. This is a careful cleanup so text boxes, color pickers, checkboxes, and paired fields look right without breaking the other tabs. (#152)
+
+## Advertisers
+
+- **[Feature]** **Show advertiser website and social links on their detail page** — The website, social profiles, and a "Search on Google" shortcut you enter on the Web Presence tab aren't currently displayed. This adds that cluster of icon links to the Advertiser Details header, opening safely in a new tab. (#383)
+
+## Behind the Scenes
+
+- **[Feature]** **A helper to turn conversations into tracked work items** — A tool that reads designated chat conversations and automatically files the action items as tracked issues, reducing manual copy-paste when capturing follow-ups from meetings. (#272)
+- **[Task]** **Strengthening our automated testing** — An internal review of our automated test coverage found a few gaps (tests that were silently skipping, not running automatically, or timing-sensitive). Addressing these makes our quality checks more reliable, with no direct change to the screens you use. (#379)
 
 ---
 
