@@ -1,49 +1,49 @@
 # Open Issues — Plain-Language Overview
 
-_Last updated 2026-08-30 06:06:11 UTC · 15 open issues._
+_Last updated 2026-08-31 06:08:16 UTC · 15 open issues._
 
 This page summarizes everything currently open and being worked on in New Adsmith
 Frontend, written for the people who use it day to day. Each item ends with its
 internal tracking number in parentheses, e.g. (#244).
 
-## Offers & Placements
+## Offers
 
-- **[Feature]** **Preview your unsaved changes before saving** — When editing a placement or offer, the Preview button will show exactly what you've changed on the page, so you no longer have to save first just to see how an edit looks. (#292)
-- **[Bug]** **Offer settings that weren't reaching the live experience** — Several saved offer options (including the Modal-tab fields, Display URL, and "Force More Info Visible") weren't actually being applied on live surfaces. We're making sure each saved option either takes effect or is cleanly removed so nothing is misleading. (#295)
-- **[Feature]** **Automatic performance projections for new offers** — Exploring a way to estimate how a new offer is likely to perform based on your own historical offer data, giving the team a data-driven gut-check at intake instead of relying on a manual review. (#322)
-- **[Bug]** **Manually selected offers now show correctly** — On Manual-delivery placements, the specific offers you chose (and their order) weren't carried over, so the wrong or empty offers appeared. This fix ensures the new experience displays the same hand-picked offers as before. (#370)
-
-## Reports & Dashboard
-
-- **[Task]** **Making dashboard report numbers trustworthy** — Investigating why some dashboard report figures didn't match the previous system, so you can rely on the numbers you see. (#271)
-- **[Feature]** **Notes on Placements, Advertisers, and Offers** — You'll be able to add short, categorized notes right from a Placement, Advertiser, or Offer's report page, with a recent-notes roll-up on the main Dashboard — matching the notes feature from the previous app, with the added convenience of seeing new notes appear without reloading. (#382)
-
-## Data Clients
-
-- **[Feature]** **Restoring post-conversion delivery behavior** — Bringing over the "after-success" delivery and redirect steps from the previous system so data clients continue to behave correctly once a conversion completes. (#327)
-- **[Feature]** **Restoring custom pre-ping validation** — Rebuilding the per–data-client validation checks that ran in the previous system so that these serve-time checks work again for the many clients that depend on them. This is high priority. (#338)
+- **[Bug]** **Missing offer options now carry through to what visitors see** — Several offer settings you fill in today (like the Modal-tab fields, Display URL, and certain delivery flags) weren't actually reaching the live offer. This fix makes sure the options you save show up where they should, or removes ones that do nothing so the form only shows settings that matter. (#295)
+- **[Bug]** **Manually selected offers now appear correctly** — On placements set to manual offer delivery, your hand-picked offer list was coming through empty in New Adsmith Frontend, causing the wrong offers to show. This restores your selected offers and their order so the live result matches what you configured. (#370)
+- **[Feature]** **Preview your unsaved offer and placement edits** — The Preview button will show the changes you're currently making, even before you save, so you can check your work without having to save first. (#292)
+- **[Feature]** **Automatic performance estimates for new offers** — Instead of a manual gut-check, New Adsmith Frontend will estimate how a new offer is likely to perform based on your historical offer data, giving you a data-backed projection at intake. (#322)
 
 ## Admin & Users
 
-- **[Task]** **Closing the gaps in the Users area** — Comparing the new Users management screens against the previous system to identify and add missing capabilities like bulk role changes, last-login and two-factor status, and password/notification options when adding a user. (#80)
-- **[Feature]** **Removing controls that don't do anything** — Cleaning up admin settings (certain user permission, Data-Client, and Pre-Ping options) that appear active but have no effect, so the interface doesn't imply behavior that isn't really there. (#296)
+- **[Task]** **Bringing the Users area up to full parity** — A review compared the older Users management to the new one and found missing pieces (like bulk role changes, selecting multiple users at once, last-login and two-factor details, and a password field when adding a user). This tracks closing those gaps so the Users area feels complete. (#80)
+- **[Feature]** **Removing admin controls that don't do anything** — Some settings in the Admin area (certain user permission toggles and a few data-client and pre-ping options) look active but have no effect. They'll be hidden or removed so you're not misled into thinking they change something. (#296)
 
-## Behind the Scenes
+## Data Clients & Pre-Pings
 
-- **[Feature]** **Turn Slack conversations into tracked work items** — A helper that reads designated Slack discussions and automatically files the action items, reducing manual copy-paste when logging requests. (#272)
-- **[Task]** **Strengthening our automated testing** — Improving the behind-the-scenes automated checks so they run reliably and catch problems earlier, which means fewer surprises reaching you. (#379)
+- **[Feature]** **Post-conversion delivery steps restored** — Certain after-success behaviors from the older system that run once a lead converts weren't carried over. This brings them back for the clients that rely on them. (#327)
+- **[Feature]** **Custom pre-ping validation restored for data clients** — Hundreds of data clients relied on custom checks that ran before serving and weren't yet active in New Adsmith Frontend. This high-priority work makes those checks run again so leads are validated the way they used to be. (#338)
 
-## Flows
+## Dashboard & Reports
 
-- **[Task]** **Fixing the look of the Flow form** — Several parts of the Flow form (text boxes, color pickers, checkboxes, and side-by-side fields) currently appear unstyled or stacked awkwardly. This tidies up the form so it matches the polished look of the Placement and Modal forms. (#152)
+- **[Task]** **Confirming dashboard report numbers are accurate** — Some dashboard figures didn't match the older system during testing. This high-priority investigation pins down why and makes sure the numbers you see are trustworthy. (#271)
+- **[Feature]** **Add and view notes on Placement, Advertiser, and Offer dashboards** — You'll be able to attach short, categorized notes (with a topic and priority) to a placement, advertiser, or offer, and see a recent-notes roll-up on the main Dashboard — with new notes appearing instantly without reloading the page. (#382)
 
 ## Surveys
 
-- **[Feature]** **Design choices that actually show up in the survey** — Making sure every option on the design tab is reflected in the live survey view, plus a full check across all entities to confirm no setting is quietly ignored. (#288)
+- **[Feature]** **Design-tab choices reliably show up in the survey** — Every customization you set on the design tab will be reflected in the actual survey view, and a full check across all entity forms ensures no setting is left disconnected. (#288)
+
+## Flows
+
+- **[Task]** **Tidying up the Flow form's appearance** — Parts of the Flow form look unstyled or misaligned compared to other forms — text boxes, color pickers, checkboxes, and paired fields that should sit side by side. This clean-up brings the Flow form's look in line with the rest of the app. (#152)
 
 ## Publishers & Properties
 
-- **[Bug]** **Pausing a publisher or property now sticks** — A pause set on a publisher or property wasn't being enforced on one of the serving paths. This fix ensures paused items are consistently blocked everywhere. (#299)
+- **[Bug]** **Pausing a publisher or property works consistently** — A pause could be ignored on one of the serving paths, meaning a paused publisher or property might still serve. This fix makes the pause take effect everywhere it should. (#299)
+
+## Behind the Scenes
+
+- **[Feature]** **Automatically turning conversations into tracked work** — A helper that reads designated chat conversations and files the resulting to-dos as tracked issues, cutting out manual copy-paste. No direct effect on the product screens. (#272)
+- **[Task]** **Strengthening automated testing** — A review of the app's automated tests found gaps (some tests weren't truly running, and the suite wasn't running consistently). Addressing these makes future releases more reliable. No user-facing change. (#379)
 
 ---
 
