@@ -1,66 +1,70 @@
 # Open Issues — Plain-Language Overview
 
-_Last updated 2026-09-05 06:06:29 UTC · 36 open issues._
+_Last updated 2026-09-06 06:06:32 UTC · 36 open issues._
 
 This page summarizes everything currently open and being worked on in New Adsmith
 Frontend, written for the people who use it day to day. Each item ends with its
 internal tracking number in parentheses, e.g. (#244).
 
-## Offers
-- **[Bug]** **Saved offer options don't reach the live offer** — Several options you set when editing an offer currently get dropped and never appear on the live offer. This fix makes sure each option either works end-to-end or is cleaned up so it isn't misleading. (#295)
-- **[Feature]** **Automatic performance projection for new offers** — Instead of relying on a manual gut-check, you'll get a data-driven estimate of how a new offer is likely to perform, based on your own history of similar offers. (#322)
-- **[Bug]** **Auto-register offers now respect all the usual eligibility rules** — Auto-firing offers currently skip duplicate, conflict, and address de-duplication checks, so a visitor could get an offer that should have been blocked. This makes them follow the same rules as every other offer. (#355)
-- **[Bug]** **"Conflicting Offers" setting now actually enforced** — For offers edited in the current admin, the mutual-exclusion between conflicting offers was silently doing nothing. This restores it so conflicting offers are correctly kept apart. (#358)
-- **[Feature]** **Decide the fate of the HubSpot List ID field** — This offer field currently has no effect at all. We'll either build the HubSpot connection behind it or remove the field so it doesn't imply something that isn't happening. (#362)
+## Behind the Scenes
 
-## Placements
-- **[Bug]** **Manually selected offers now carry over correctly** — On Manual-delivery placements, the list of hand-picked offers wasn't migrating, so the new platform showed the wrong or no offers. This restores the exact selected offers and their order. (#370)
-- **[Feature]** **Preview reflects your unsaved edits** — On placement and offer edit pages, Preview will show your current in-progress changes instead of only the last saved version, so you can check edits before saving. (#292)
-- **[Bug]** **Placement pixel examples that actually work** — The on-screen pixel example used a format the system didn't recognize, quietly corrupting tracking values. This makes the documented example work correctly so attribution data stays clean. (#384)
+- **[Task]** **Retire an old stats job if it's no longer needed** — A review of whether an older background process for sub-ID stats is still required or can be safely switched off. (#33)
+- **[Feature]** **Groundwork for faster historical reporting** — Rolls up hourly activity into daily totals behind the scenes so historical report numbers are ready and accurate. (#35)
+- **[Task]** **Run new and old background jobs side by side** — New background processing runs alongside the old system so results can be compared before fully switching over, reducing the risk of disruption. (#43)
+- **[Task]** **Switch over low-risk background jobs** — Retires a low-risk older background job once its replacement is proven stable, with the ability to switch back if needed. (#44)
+- **[Task]** **Switch over mid-tier background jobs** — Retires several stats-related background jobs after monitoring their replacements for stability. (#45)
+- **[Task]** **Switch over the most critical background jobs** — Carefully retires the most important jobs (lead processing and offer cap resets) with close monitoring and instant rollback ready. High priority. (#46)
+- **[Task]** **Document how to undo a change if something goes wrong** — Clear written rollback steps for each major system so the team can recover quickly. (#48)
+- **[Task]** **Troubleshooting guides for common problems** — Step-by-step guides that help the team resolve issues faster. (#49)
+- **[Feature]** **Turn Slack conversations into tracked tasks** — A helper that reads chat discussions and files them as work items so action items don't get lost. (#272)
+- **[Task]** **One place to track progress toward matching the old system** — An overarching tracker that rolls up all the work needed to bring New Adsmith Frontend fully in line with the legacy app. High priority. (#319)
+- **[Task]** **Weekly progress report on matching the old system** — An automatically updated weekly scorecard showing how close the new platform is to full parity. (#323)
+- **[Task]** **Run automated checks before changes go live** — Automated tests will run after each update so problems in the admin screens are caught early. High priority. (#376)
+- **[Task]** **Keep automated test data clean** — Housekeeping so leftover test records get cleaned up and tests don't interfere with one another. (#377)
+- **[Task]** **Review of the automated testing setup** — A review of the automated test suite, with the remaining follow-up items being tracked. (#379)
+
+## Offers
+
+- **[Bug]** **Some saved offer settings never reached the live ad** — Fixes cases where options you set on an offer weren't actually being used when the offer was shown, so what you configure matches what visitors see. High priority. (#295)
+- **[Feature]** **Automatic performance predictions for new offers** — When a new offer comes in, you'll get a data-based estimate of how it's likely to perform, drawn from past offers, in place of a manual gut-check. (#322)
+- **[Bug]** **Auto-registered offers now follow the same eligibility rules** — Auto-fire offers will properly respect duplicate, conflict, and address-matching checks, so offers that should be blocked no longer slip through. High priority. (#355)
+- **[Bug]** **"Conflicting Offers" setting works again after editing** — Fixes a problem where the rule keeping conflicting offers apart was silently ignored for offers edited in the current admin. High priority. (#358)
+- **[Feature]** **Decide the future of the unused HubSpot List ID field** — The HubSpot List ID field currently does nothing; this decides whether to build a real HubSpot connection or remove the field. (#362)
 
 ## Data Clients
-- **[Feature]** **Post-conversion delivery steps restored** — The legacy "after success" delivery/redirect behavior for certain clients is being brought over so those clients keep working as before. (Nearly complete.) (#327)
-- **[Feature]** **Legacy pre-ping validation brought forward** — Hundreds of clients relied on custom pre-checks that don't currently run on the new platform. This ports that validation so those checks apply again before a lead is delivered. (#338)
-- **[Bug]** **Accurate lead-validation status for manually submitted leads** — Leads submitted through the manual/broker path always reported "validated" regardless of the real result. This wires in the real validation check so the status is truthful. (#366)
+
+- **[Feature]** **Bring back post-conversion delivery steps** — Restores the "after success" client handling from the old system so leads are delivered and redirected as before. Nearly complete. (#327)
+- **[Feature]** **Restore custom pre-check validation for data clients** — Ports the older per-client pre-checks that validate leads before they're sent, so those custom rules run again on the new platform. High priority. (#338)
+- **[Bug]** **Consistent lead validation across all lead paths** — Makes the UserTrue lead-validation result real for leads processed through the manual/broker path, so validation status is trustworthy everywhere. (#366)
 
 ## Surveys
-- **[Feature]** **Design-tab settings fully reflected in the survey** — Every customization option on the Design tab will be checked and connected so what you set is what visitors see, with no dead options. (#288)
-- **[Bug]** **Survey lead submission won't hang** — When several outside services are slow at once, a lead submission can be cut off with an error. This reworks the flow so it always returns a clean result instead of failing hard. (#367)
+
+- **[Feature]** **Make sure every survey design option actually works** — Confirms that each customization on the design tab is reflected in the live survey and cleans up any settings that don't do anything. (#288)
+- **[Task]** **Speed up surveys** — Adds a caching layer so surveys load and respond faster for visitors. High priority. (#42)
+- **[Bug]** **Prevent survey submissions from timing out** — Reworks how outside checks are run during a submission so slow third parties can't cause a hard failure. High priority. (#367)
 
 ## Dashboard & Reports
-- **[Feature]** **Live "today" numbers on the dashboard** — The dashboard will show up-to-the-hour impressions, clicks, leads, and revenue for the current day in the correct time zone. (#34)
-- **[Task]** **Investigate report numbers that don't match the old system** — We're comparing the new platform's report figures against the legacy system on a fixed date range to find and explain any differences. (#271)
 
-## Admin & Users
-- **[Feature]** **Hide admin controls that do nothing** — Some settings (certain user permissions and a few data-client and pre-ping options) are saved but not actually used. We'll hide or remove them so a control never implies access or behavior that doesn't exist. (#296)
-- **[Task]** **Users screen gap review** — A documented comparison of the old Users management area against the new one, so we know exactly which features (like bulk actions and extra columns) still need to be added. (#80)
+- **[Feature]** **Live "today" numbers on the dashboard** — Adds up-to-the-hour totals for impressions, clicks, leads, and revenue so today's activity is visible right away. (#34)
+- **[Task]** **Investigate report numbers not matching the old system** — Compares report totals between the old and new platforms to find and fix any differences, so you can trust the figures. High priority. (#271)
 
 ## Advertisers
-- **[Feature]** **Per-advertiser pre-ping checks verified** — We'll confirm the new pre-ping works correctly for each active advertiser, checking field mapping and success rules before switching over. (#41)
-- **[Task]** **Side-by-side pre-ping testing** — The new pre-ping runs alongside the old one on the same leads so we can compare results and fix any differences before it goes fully live. (#40)
 
-## General / Across the App
-- **[Task]** **One place to track "old vs. new" completeness** — An overarching tracker that rolls up every remaining gap between the legacy system and New Adsmith Frontend, so progress is visible in one number instead of scattered items. (#319)
-- **[Bug]** **Campaign offer-group counts show correctly** — A data-reading quirk could make certain campaign offer groups come back empty. This fixes the parsing so offer groups and their counts display reliably. (#372)
+- **[Task]** **Safely test the new pre-ping before switching** — Runs the new pre-ping alongside the old one to confirm results match before it goes fully live. High priority. (#40)
+- **[Feature]** **Check pre-ping for each advertiser** — Verifies pre-ping works correctly for every active advertiser, so lead qualification behaves as expected once switched over. High priority. (#41)
+
+## Admin / Users
+
+- **[Task]** **Gap review of the Users area** — A side-by-side comparison of the old and new Users screens to identify missing features (like bulk actions and role changes) and prioritize what to add. (#80)
+- **[Feature]** **Remove admin controls that don't do anything** — Hides or removes settings that appear to work but have no effect, so the admin area is clearer and more trustworthy. (#296)
 
 ## Modals
-- **[Feature]** **Refreshed voucher-style visitor modal** — The visitor modal will match the legacy "voucher" look: a personalized header with a voucher number, a per-offer progress bar that recolors as offers are claimed, a branded offer row with Claim/No Thanks, and a trust footer. (#386)
 
-## Behind the Scenes
-- **[Feature]** **Historical stats roll-up** — A scheduled process to summarize hourly data into daily totals so long-term reports load reliably. (#35)
-- **[Task]** **Faster survey performance** — Adding a caching layer so survey configurations and offer data load more quickly for visitors. (#42)
-- **[Task]** **Evaluate an old stats job** — Reviewing whether a legacy background stats job is still needed or can be retired. (#33)
-- **[Task]** **Run new and old background jobs in parallel** — Running the new scheduled jobs alongside the existing ones and watching for differences before switching over. (#43)
-- **[Task]** **Retire lower-risk background jobs (Tier 3)** — Turning off the least critical old jobs once their replacements are proven stable. (#44)
-- **[Task]** **Retire the next set of background jobs (Tier 2)** — Switching off additional old stats jobs after a monitoring period. (#45)
-- **[Task]** **Retire the most critical background jobs (Tier 1)** — Carefully turning off the highest-stakes jobs last, with an immediate fallback plan. (#46)
-- **[Task]** **Rollback procedures documented** — Clear, tested steps to revert each production system if something goes wrong. (#48)
-- **[Task]** **Troubleshooting guides created** — Step-by-step guides for handling common operational issues. (#49)
-- **[Feature]** **Slack-to-issue helper** — A tool that turns action items from Slack conversations into tracked work items automatically, reducing manual copy/paste. (#272)
-- **[Task]** **Weekly progress scorecard** — An automated weekly summary of how close the new platform is to full parity with the old one. (#323)
-- **[Task]** **Automated testing runs in the pipeline** — Wiring the full end-to-end test suite to run automatically after each update so regressions are caught before they reach users. (#376)
-- **[Task]** **Cleaner, more reliable automated tests** — Adding cleanup and isolation so test runs don't leave stray data or interfere with each other. (#377)
-- **[Task]** **Test-suite audit follow-ups** — Tracking the remaining fixes from a review of the automated test setup. (#379)
+- **[Feature]** **Refreshed voucher-style visitor modal** — Rebuilds the visitor pop-up to match the legacy voucher look, with a personalized header, a progress bar that updates as offers are claimed, branded offer rows, and a secure footer. (#386)
+
+## Campaigns
+
+- **[Bug]** **Campaign offer groups display reliably** — Fixes a data-reading issue so campaign offer groups always load correctly, even after entries were removed in the old system. High priority. (#372)
 
 ---
 
